@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const App = () => {
-  return (
-    <div className='text-red-500'>App</div>
-  )
-}
+// const App = () => {
+//   return (
+//     <div className='text-red-500'>App</div>
+//   )
+// }
 
-export default App
+// export default App
