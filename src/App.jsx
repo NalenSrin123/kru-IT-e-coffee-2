@@ -1,9 +1,17 @@
-import React from 'react'
+
+import React from "react";
+import Registerform from "./services/auth/Registerform";
+import ResetPassword from './services/auth/ResetPassword';
+
 
 const App = () => {
   return (
-    <div className='text-red-500'>App</div>
+    <div>
+      <Registerform />
+
+      <ResetPassword />
+    </div>
   )
 }
 
-export default App
+export default App;
