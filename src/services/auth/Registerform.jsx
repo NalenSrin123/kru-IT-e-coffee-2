@@ -9,8 +9,7 @@ export default function Registerform() {
     <div className="min-h-screen flex items-start sm:items-center justify-center p-3 sm:p-4 md:p-6 bg-amber-400/20 font-serif">
       {/* Card */}
       <div
-        className="relative w-full max-w-md rounded-2xl overflow-hidden my-4 sm:my-0
-        bg-amber-50/95 backdrop-blur-md
+        className="relative w-full max-w-md rounded-2xl overflow-hidden my-4 sm:my-0 bg-white
         shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)]
         border border-amber-300/30"
       >
