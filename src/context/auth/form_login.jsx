@@ -24,6 +24,7 @@ export default function CoffeeLogin() {
           </p>
 
           {/* EMAIL */}
+
           <label className="text-xs sm:text-sm mb-1">E-mail</label>
           <input
             type="email"
@@ -106,3 +107,4 @@ export default function CoffeeLogin() {
     </div>
   );
 }
+
