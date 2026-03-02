@@ -31,8 +31,8 @@ const Design_checkout_page = () => {
     background: pageBgColor,
     border: `1.5px solid ${inputBorderColor}`,
     borderRadius: "10px",
-    padding: "13px 16px",
-    fontSize: "16px",
+    padding: "9px 12px",
+    fontSize: "14px",
     color: bodyTextColor,
     outline: "none",
     width: "100%",
@@ -75,7 +75,7 @@ const Design_checkout_page = () => {
     background: pageBgColor,
     border: `1px solid ${cardBorderColor}`,
     borderRadius: "20px",
-    padding: "24px 20px",
+    padding: "16px 14px",
   };
 
   const sectionLabel = {
