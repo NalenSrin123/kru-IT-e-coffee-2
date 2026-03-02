@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Registerform from "./services/auth/Registerform";
 
 const App = () => {
   return (
-    <div className='text-red-500'>App</div>
-  )
-}
+    <div>
+      <Registerform />
+    </div>
+  );
+};
 
-export default App
+export default App;
