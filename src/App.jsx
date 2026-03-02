@@ -1,8 +1,11 @@
 import React from 'react'
+import Sendotpcode from './services/auth/Sendotpcode'
 
 const App = () => {
   return (
-    <div className='text-red-500'>App</div>
+     <> 
+     < Sendotpcode />
+     </>
   )
 }
 
