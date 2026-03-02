@@ -1,10 +1,16 @@
-import React from 'react'
-import Footer from './components/public/Footer/Footer'
+
+import React from "react";
+import Registerform from "./services/auth/Registerform";
+import ResetPassword from './services/auth/ResetPassword';
+
 
 function App() {
   return (
     <div>
       <Footer></Footer>
+      <Registerform />
+
+      <ResetPassword />
     </div>
   )
 }
