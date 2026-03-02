@@ -1,8 +1,11 @@
 import React from 'react'
+import ResetPassword from './services/auth/ResetPassword';
 
 const App = () => {
   return (
-    <div className='text-red-500 text-2xl'>App</div>
+    <div>
+      <ResetPassword />
+    </div>
   )
 }
 
