@@ -1,8 +1,9 @@
 import React from 'react'
-
+import About from "./components/public/about/About"
 const App = () => {
   return (
-    <div className='text-red-500'>App</div>
+    <About/>
+   
   )
 }
 
