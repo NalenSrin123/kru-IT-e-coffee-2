@@ -1,8 +1,11 @@
 import React from 'react'
+import Menu_page from './components/public/menu/Menu_page'
 
 const App = () => {
   return (
-    <div className='text-red-500'>App</div>
+    <div>
+      <Menu_page/>
+    </div>
   )
 }
 
