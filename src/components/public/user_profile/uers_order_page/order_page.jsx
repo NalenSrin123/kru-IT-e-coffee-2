@@ -8,14 +8,14 @@ export default function UserOrderPage() {
       name: "Cappuccino",
       price: "$4.50",
       date: "30/12/2025",
-      image: "https://images.unsplash.com/photo-1521305916504-4a1121188589",
+      image: "https://www.eatandwalkitaly.it/wp-content/uploads/2019/11/cappuccino.jpg",
     },
     {
       id: 2,
       name: "Cappuccino",
       price: "$4.50",
       date: "30/12/2025",
-      image: "https://images.unsplash.com/photo-1521305916504-4a1121188589",
+      image: "https://www.eatandwalkitaly.it/wp-content/uploads/2019/11/cappuccino.jpg",
     },
   ];
 
