@@ -1,10 +1,10 @@
 import React from 'react'
-import Reset_password from './services/auth/Reset_password'
+import Send_Reset_password from './services/auth/Send_Reset_password'
 
 const App = () => {
   return (
     <div className=''>
-        <Reset_password/>
+        <Send_Reset_password/>        
     </div>
   )
 }
