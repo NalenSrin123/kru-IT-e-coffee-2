@@ -1,14 +1,22 @@
-import React from 'react'
-import UserOrderPage from './components/public/user_profile/uers_order_page/order_page.jsx'
+import React from "react";
+import Design_checkout_page from "./components/public/checkout/Design_checkout_page";
+import Form_Confirm_OTP from "./services/auth/Form_Confirm_OTP";
+import Footer from "./components/public/Footer/Footer";
+import Reset_password from "./services/auth/Reset_password";
+import Registerform from "./services/auth/Registerform";
+import ResetPassword from "./services/auth/ResetPassword";
 
 const App = () => {
   return (
-    <>
-    <UserOrderPage/>
-    <div className='text-red-500 text-2xl'>App</div>
-    </>
-    
-  )
-}
+    <div>
+      {/* <Design_checkout_page /> */}
+      <Form_Confirm_OTP />
+      {/* <Registerform />
+      <Reset_password />
+      <ResetPassword />
+      <Footer /> */}
+    </div>
+  );
+};
 
-export default App
+export default App;
