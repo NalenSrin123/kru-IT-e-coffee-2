@@ -5,6 +5,7 @@ import Footer from "./components/public/Footer/Footer";
 import Reset_password from "./services/auth/Reset_password";
 import Registerform from "./services/auth/Registerform";
 import ResetPassword from "./services/auth/ResetPassword";
+import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 const App = () => {
   return (
     <div>
@@ -13,7 +14,8 @@ const App = () => {
       {/* <Registerform />
       <Reset_password />
       <ResetPassword />
-      <Footer /> */}
+      <Footer /> */} 
+      {/* <ResetPasswordInEmail/> */}
       <About/>
     </div>
   );
