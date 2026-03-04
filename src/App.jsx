@@ -1,8 +1,9 @@
 import React from 'react'
+import User_sitting from './components/public/user_sitting/User_sitting'
 
 const App = () => {
   return (
-    <div className='text-red-500 text-2xl'>App</div>
+    <User_sitting/>
   )
 }
 
