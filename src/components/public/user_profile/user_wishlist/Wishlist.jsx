@@ -4,11 +4,9 @@ import WishlistItem from "./WishlistItem";
 
 export default function Wishlist() {
   const [items, setItems] = useState(products);
-
   const removeItem = (id) => {
     setItems(items.filter((item) => item.id !== id));
   };
-
   return (
     <div className="wishlist">
       {items.map((item) => (
