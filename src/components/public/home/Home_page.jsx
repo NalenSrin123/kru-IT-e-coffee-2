@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="bg-[#efddba] min-h-screen mt-0">
+    <div className="bg-[#EAD7B7]  min-h-screen mt-0">
 
       {/* ================= HERO ================= */}
       <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24">

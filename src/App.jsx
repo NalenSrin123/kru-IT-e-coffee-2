@@ -26,13 +26,14 @@ const App = () => {
     <div>
       <Navbar/>
       <Hero_section/>
-      <Home/>
-       <Design_checkout_page /> 
-      <Form_Confirm_OTP />
+      <Home/> 
+      <Footer /> 
+       {/* <Design_checkout_page />  */}
+      {/* <Form_Confirm_OTP />
       <Send_Reset_password/>
        <Registerform />
       <ResetPassword />
-       <Footer /> 
+      
        <Design_Service_Page/>
        
       <About/>
@@ -41,7 +42,7 @@ const App = () => {
       <Sendotpcode/>
     <Reset_Password_In_Email/>
     <CoffeeLogin/>
-    <UserOrderPage/>
+    <UserOrderPage/> */}
     {/* <Apps/> */}
     </div>
   );
