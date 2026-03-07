@@ -1,8 +1,8 @@
 import Sidebar from "./Sidebar";
 import Wishlist from "./WishList";
-import "./styles.css";
+// import "./styles.css";
 
-export default function App() {
+export default function Apps() {
   return (
     <div className="container">
       <Sidebar />
