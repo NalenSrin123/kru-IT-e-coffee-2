@@ -107,4 +107,3 @@ export default function CoffeeLogin() {
     </div>
   );
 }
-
