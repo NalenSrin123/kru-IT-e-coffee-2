@@ -41,8 +41,8 @@ const App = () => {
       <Sendotpcode/>
     <Reset_Password_In_Email/>
     <CoffeeLogin/>
-    <UserOrderPage/>
     {/* <Apps/> */}
+    <UserOrderPage/>
     </div>
   );
 };
