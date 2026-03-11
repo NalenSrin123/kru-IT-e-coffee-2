@@ -26,6 +26,7 @@ import User_sitting from "./components/public/user_sitting/User_sitting";
 const App = () => {
   return (
     <div>
+<<<<<<< HEAD
        <Navbar/>
       {/* <Hero_section/>
       <Home/>
@@ -36,9 +37,23 @@ const App = () => {
       <ResetPassword />
        <Footer /> 
        <Design_Service_Page/>  */}
+=======
+      <Navbar/>
+      <Hero_section/>
+      <Home/> 
+      <Footer /> 
+       {/* <Design_checkout_page />  */}
+      {/* <Form_Confirm_OTP />
+      <Send_Reset_password/>
+       <Registerform />
+      <ResetPassword />
+      
+       <Design_Service_Page/>
+>>>>>>> fbc5a4b3871ba762eecfd54388c8df43419aa5a7
        
       {/* <About/> */}
       <Desgin_use_addres_page/>
+<<<<<<< HEAD
       {/* <Menu_page/> */}
       {/* <Sendotpcode/> */}
     {/* <Reset_Password_In_Email/> */}
@@ -50,6 +65,14 @@ const App = () => {
     
     
     
+=======
+      <Menu_page/>
+      <Sendotpcode/>
+    <Reset_Password_In_Email/>
+    <CoffeeLogin/>
+    <UserOrderPage/> */}
+    {/* <Apps/> */}
+>>>>>>> fbc5a4b3871ba762eecfd54388c8df43419aa5a7
     </div>
   );
 };
