@@ -21,13 +21,18 @@ import Reset_Password_In_Email from "./services/auth/Reset_Password_In_Email";
 import CoffeeLogin from "./context/auth/form_login";
 import UserOrderPage from "./components/public/user_profile/uers_order_page/order_page";
 import Apps from "./components/public/user_profile/user-wishlist/App";
+import  Route   from "../src/components/public/routes/Route";
 const App = () => {
   return (
     <div>
+      <div>
+      <Route />   {/* This handles Navbar + all page routing */}
+    </div>
+
       <Navbar/>
       <Hero_section/>
       <Home/>
-       <Design_checkout_page /> 
+      <Design_checkout_page /> 
       <Form_Confirm_OTP />
       <Send_Reset_password/>
        <Registerform />
@@ -46,5 +51,5 @@ const App = () => {
     </div>
   );
 };
-
+ 
 export default App;
