@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import Desgin_use_addres_page from "../user_profile/Desgin_use_addres_page";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +79,6 @@ const Navbar = () => {
             >
               Register
             </NavLink>
-          
           </div>
 
           {/* Mobile Menu Button and Cart */}
