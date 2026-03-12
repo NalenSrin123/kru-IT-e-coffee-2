@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SendResetPassword = () => {
   const [email, setEmail] = useState('');
@@ -68,15 +69,15 @@ const SendResetPassword = () => {
             type="submit"
             className="w-full bg-[#6F3C1E] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#5a3118] transition-all transform active:scale-[0.98] text-lg"
           >
-            Send Verification Email
+            <Link to="/send-reset-password-in-email">Send Verification Email</Link>
           </button>
 
           {/* Bottom Navigation */}
           <div className="text-center pt-2">
             <p className="text-[#A67C52] text-sm">
-              Remember your password? 
+              Remember your password?
               <button type="button" className="text-[#3182CE] hover:underline font-semibold ml-1">
-                Sign in
+                <Link to="/login">Sign in</Link>
               </button>
             </p>
           </div>
