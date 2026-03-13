@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { IoIosTimer } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
 import { GiCheckedShield } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 export default function Form_Confirm_OTP() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -73,8 +74,10 @@ export default function Form_Confirm_OTP() {
         {/* Button */}
         <button
           onClick={handleSubmit}
-          className="w-full mt-5 bg-yellow-700 text-white py-3 rounded-[12px] font-bold text-sm hover:bg-yellow-900 flex items-center justify-center gap-2 duration-300">
-          Confirm <FaArrowRight />
+          className="w-full mt-5 bg-yellow-700 text-white py-3 rounded-[12px] font-bold text-sm hover:bg-yellow-900 duration-300">
+          <Link className="flex items-center justify-center gap-2" to="/login">
+             Confirm <FaArrowRight />
+          </Link>
         </button>
       </div>
     </div>
