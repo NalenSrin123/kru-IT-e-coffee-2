@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function CoffeeLogin() {
   const [show, setShow] = useState(false);
 
@@ -19,7 +19,7 @@ export default function CoffeeLogin() {
           <p className="text-xs sm:text-sm mb-4 sm:mb-6">
             Don’t have an account?{' '}
             <span className="text-blue-600 cursor-pointer hover:underline">
-              Create now
+              <Link to="/register">Create Now</Link>
             </span>
           </p>
 
@@ -65,13 +65,14 @@ export default function CoffeeLogin() {
               <input type="checkbox" /> Remember me
             </label>
             <span className="text-blue-600 cursor-pointer hover:underline">
-              Forgot Password?
+              <Link to="/send-reset-password">Forgot Password?</Link>
             </span>
           </div>
 
           {/* LOGIN BUTTON */}
+          
           <button className="bg-[#6B4226] text-white py-2 rounded-xl font-medium hover:opacity-90 transition mb-4 sm:mb-6 text-sm sm:text-base">
-            Login
+            <Link to='/'>Login</Link>
           </button>
 
           {/* DIVIDER */}

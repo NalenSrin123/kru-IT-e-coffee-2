@@ -4,76 +4,72 @@ import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, } from "reac
 function Footer() {
      return (
           <div>
-               <footer className=" w-full h-150 bg-[#8B5A2B] text-white pt-6 px-6 md:px-20">
-                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-
-                         <div className="md:w-1/3 flex justify-center md:justify-start">
-                              <img src="https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-americano-coffee-beans-transparent-white-background-png-image_6698453.png" alt="" className="w-40 md:w-64 object-contain" />
-                         </div>
-                         <div className="md:w-1/3 ">
-                              <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-                                   <span className="block"> Check Out Our</span>
-                                   <span className="block"> Best Coffee </span>
-                                   <span className="block"> Beans</span>
-                              </h1>
-
-                              <button className=" flex justify-end bg-black/60 px-6 py-2 rounded-full hover:bg-amber-950  duration-300 ">
-                                   Explore Our Products <span className="ml-2">{">>"}</span>
-                              </button>
-                         </div>
-                         <div className="md:w-1/5 flex justify-center md:justify-end">
-                              <img
-                                   src="https://png.pngtree.com/png-vector/20240628/ourmid/pngtree-topview-coffee-bean-explosi-png-image_12744324.png"
-                                   alt="Coffee Beans Right"
-                                   className="w-40 md:w-64 object-contain"
-                              />
-                         </div>
+               <footer className="w-full bg-gradient-to-b from-[#2D1810] via-[#3D2315] to-[#1A0F08] text-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                         <div className="h-px bg-gradient-to-r from-transparent via-amber-600/40 to-transparent"></div>
                     </div>
-
-                    <div className="grid md:grid-cols-4 gap-35 mt-20">
-                         <div>
-                              <h2 className="text-3xl font-bold mb-3">
-                                   K<span className="text-yellow-400">{"0"}</span>FEE
-                              </h2>
-                              <p className="text-sm mb-4 text-gray-200">Match your taste .Fit your <br /> style!</p>
-                              <div className="flex gap-4 text-lg">
-                                   <FaFacebook className="text-blue-600 text-1xl hover:text-pink-100 transition duration-300 cursor-pointer" />
-                                   <FaInstagram className="text-orange-600 text-1xl hover:text-purple-600 transition duration-300 cursor-pointer" />
-                                   <FaTwitter className="text-sky-500 text-1xl hover:text-sky-600 transition duration-300 cursor-pointer" />
-                                   <FaLinkedin className="text-amber-50 text-1xl hover:text-black transition duration-300 cursor-pointer" />
-                                   <FaYoutube className="text-red-600 text-1xl hover:text-amber-50 transition duration-300 cursor-pointer" />
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8 lg:mb-12">
+                              <div className="text-center sm:text-left">
+                                   <h2 className="text-2xl lg:text-3xl font-bold mb-3 tracking-wide">
+                                        K<span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">0</span>FEE
+                                   </h2>
+                                   <p className="text-sm lg:text-base text-gray-300 mb-6 leading-relaxed">
+                                        Match your taste. Fit your style with our premium selection.
+                                   </p>
+                                   <div className="flex gap-4 justify-center sm:justify-start">
+                                        <a href="#" className="p-2 bg-blue-600/20 hover:bg-blue-600/40 rounded-full transition-all duration-300 transform hover:scale-125">
+                                             <FaFacebook className="text-blue-400 text-lg" />
+                                        </a>
+                                        <a href="#" className="p-2 bg-pink-600/20 hover:bg-pink-600/40 rounded-full transition-all duration-300 transform hover:scale-125">
+                                             <FaInstagram className="text-pink-400 text-lg" />
+                                        </a>
+                                        <a href="#" className="p-2 bg-sky-600/20 hover:bg-sky-600/40 rounded-full transition-all duration-300 transform hover:scale-125">
+                                             <FaTwitter className="text-sky-400 text-lg" />
+                                        </a>
+                                        <a href="#" className="p-2 bg-blue-700/20 hover:bg-blue-700/40 rounded-full transition-all duration-300 transform hover:scale-125">
+                                             <FaLinkedin className="text-blue-300 text-lg" />
+                                        </a>
+                                        <a href="#" className="p-2 bg-red-600/20 hover:bg-red-600/40 rounded-full transition-all duration-300 transform hover:scale-125">
+                                             <FaYoutube className="text-red-400 text-lg" />
+                                        </a>
+                                   </div>
+                              </div>
+                              <div className="text-center sm:text-left">
+                                   <h3 className="text-lg font-bold mb-5 tracking-wide uppercase text-amber-400">Quick Links</h3>
+                                   <ul className="space-y-3">
+                                        <li><a href="#" className="text-gray-300 hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                                        <li><a href="#" className="text-gray-300 hover:text-amber-400 transition-colors duration-300">About Us</a></li>
+                                        <li><a href="#" className="text-gray-300 hover:text-amber-400 transition-colors duration-300">Services</a></li>
+                                        <li><a href="#" className="text-gray-300 hover:text-amber-400 transition-colors duration-300">Help & Support</a></li>
+                                        <li><a href="#" className="text-gray-300 hover:text-amber-400 transition-colors duration-300">Contact</a></li>
+                                   </ul>
+                              </div>
+                              <div className="text-center sm:text-left">
+                                   <h3 className="text-lg font-bold mb-5 tracking-wide uppercase text-amber-400">Locations</h3>
+                                   <ul className="space-y-3 text-gray-300 text-sm">
+                                        <li className="hover:text-amber-400 transition-colors duration-300 cursor-pointer">📍 Address 1<br />Location, 123</li>
+                                        <li className="mt-3 hover:text-amber-400 transition-colors duration-300 cursor-pointer">📍 Address 2<br />Location, 123</li>
+                                        <li className="mt-3 hover:text-amber-400 transition-colors duration-300 cursor-pointer">📍 Address 3<br />Location, 123</li>
+                                   </ul>
+                              </div>
+                              <div className="text-center sm:text-left">
+                                   <h3 className="text-lg font-bold mb-5 tracking-wide uppercase text-amber-400">Contact</h3>
+                                   <ul className="space-y-3 text-gray-300 text-sm">
+                                        <li className="hover:text-amber-400 transition-colors duration-300 cursor-pointer">✉️ info@kofee.com</li>
+                                        <li className="hover:text-amber-400 transition-colors duration-300 cursor-pointer">📧 support@kofee.com</li>
+                                        <li className="hover:text-amber-400 transition-colors duration-300 cursor-pointer">☎️ +1 (555) 123-4567</li>
+                                   </ul>
                               </div>
                          </div>
-                         <div>
-                              <ul className="">
-                                   <li><a href="#">HOME</a></li>
-                                   <li><a href="#">ABOUT US</a></li>
-                                   <li><a href="#">SERVICES</a></li>
-                                   <li><a href="#">HELP & SUPPORT</a></li>
-                                   <li><a href="#">CONTACT</a></li>
-                              </ul>
-                         </div>
-                         <div>
-                              <ul className="">
-                                   <li>ADDRESS 1, LOCATION, 123</li>
-                                   <li>ADDRESS 2, LOCATION, 123</li>
-                                   <li>ADDRESS 3, LOCATION, 123</li>
-                              </ul>
-                         </div>
-                         <div>
-                              <ul className="">
-                                   <li>YOURINF0@MAIL.COM</li>
-                                   <li>ADDRESS, LOCATION, 123</li>
-                                   <li>111 222 333 444 555</li>
-                              </ul>
-                         </div> 
                     </div>
-                    <br />
-                    <br />
-                    <hr className="w-full border-t-2 border-white" />
-                    <br />
-                    <div className="flex justify-center items-center">
-                         <p className="text-card year-card font-stretch-90%">&copy; {new Date().getFullYear()} Kofee.Designed by KRUtechIT</p>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                         <div className="h-px bg-gradient-to-r from-transparent via-amber-600/40 to-transparent"></div>
+                    </div>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+                         <p className="text-center text-gray-400 text-sm">
+                              &copy; {new Date().getFullYear()} Kofee. All rights reserved. Designed with ❤️ by KRUtechIT
+                         </p>
                     </div>
                </footer>
           </div>

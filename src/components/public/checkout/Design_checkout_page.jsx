@@ -59,7 +59,7 @@ const Design_checkout_page = () => {
         display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
         padding: "16px 12px", borderRadius: "14px",
         border:     payMethod === id ? `2px solid ${selectedColor}` : `2px solid ${cardBorderColor}`,
-        background: payMethod === id ? walletBgSelected : pageBgColor,
+        background: payMethod === id ? 
         boxShadow:  payMethod === id ? "0 2px 14px rgba(122,62,26,0.18)" : "none",
         transform:  payMethod === id ? "scale(1.04)" : "scale(1)",
         transition: "all 0.2s", cursor: "pointer", fontWeight: "600", fontSize: "14px", color: titleColor,
@@ -72,7 +72,7 @@ const Design_checkout_page = () => {
   );
 
   const card = {
-    background: pageBgColor,
+    
     border: `1px solid ${cardBorderColor}`,
     borderRadius: "20px",
     padding: "16px 14px",
@@ -84,7 +84,7 @@ const Design_checkout_page = () => {
   };
 
   return (
-    <div style={{ background: pageBgColor, minHeight: "100vh", padding: "32px 16px 48px", fontFamily: "sans-serif" }}>
+    <div style={{  minHeight: "100vh", padding: "32px 16px 48px", fontFamily: "sans-serif" }}>
       <style>{`
         .co-name-phone { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .co-wallets    { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 28px; }
@@ -152,7 +152,7 @@ const Design_checkout_page = () => {
               width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
               padding: "16px", borderRadius: "14px",
               border:     payMethod === "cod" ? `2px solid ${selectedColor}` : `2px solid ${cardBorderColor}`,
-              background: pageBgColor,
+              
               boxShadow:  payMethod === "cod" ? "0 2px 14px rgba(122,62,26,0.15)" : "none",
               transition: "all 0.2s", cursor: "pointer",
             }}
