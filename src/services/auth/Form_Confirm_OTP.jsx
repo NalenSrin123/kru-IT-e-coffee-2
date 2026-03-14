@@ -47,7 +47,7 @@ export default function Form_Confirm_OTP() {
           </h3>
         </div>
         {/* OTP Inputs */}
-        <div className="mt-5 flex justify-between gap-2">
+        <div className="mt-5 flex justify-center gap-2">
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -57,7 +57,7 @@ export default function Form_Confirm_OTP() {
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e.target.value, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-full h-[55px] md:h-[70px] text-center text-xl font-bold border border-yellow-600/50 rounded-md bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-yellow-700"
+              className="w-[12%] h-[55px] md:h-[70px] text-center text-xl font-bold border border-yellow-600/50 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700"
             />
           ))}
         </div>

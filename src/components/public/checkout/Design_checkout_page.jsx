@@ -75,7 +75,7 @@ const Design_checkout_page = () => {
     background: pageBgColor,
     border: `1px solid ${cardBorderColor}`,
     borderRadius: "20px",
-    padding: "24px 20px",
+    padding: "16px 14px",
   };
 
   const sectionLabel = {
