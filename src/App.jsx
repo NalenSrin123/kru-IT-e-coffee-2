@@ -22,6 +22,7 @@ import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 
 const App = () => {
   return (
+    
     // <Router>
       <Routes>
         {/* Public Pages with Navbar/Footer */}
@@ -42,7 +43,13 @@ const App = () => {
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
         </Route>
+         
+          
+        
       </Routes>
+      
+     
+      
     // </Router>
   );
 };
