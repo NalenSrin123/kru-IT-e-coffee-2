@@ -19,30 +19,33 @@ import SendResetPassword from "./services/auth/Send_Reset_password";
 import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 import SendOtpCode from "./services/auth/Sendotpcode";
 import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
-
+import Form_Add_Coffee from "./dashboard/features/a1-core-crud-forms/coffee-category-crud/Form_Add_Coffee";
 const App = () => {
   return (
     // <Router>
-      <Routes>
-        {/* Public Pages with Navbar/Footer */}
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<MenuPage />} />
-          <Route path="/service" element={<ServicePage />} />
-          <Route path="/about" element={<About />} />
-        </Route>
+    <Routes>
+      {/* Public Pages with Navbar/Footer */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/service" element={<ServicePage />} />
+        <Route path="/about" element={<About />} />
+      </Route>
 
-        {/* Auth Pages without Navbar/Footer */}
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/send-reset-password" element={<SendResetPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
-          <Route path="/send_otp_code" element={<SendOtpCode />} />
-          <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-        </Route>
-      </Routes>
+      {/* Auth Pages without Navbar/Footer */}
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/send-reset-password" element={<SendResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/send-reset-password-in-email"
+          element={<ResetPasswordInEmail />}
+        />
+        <Route path="/send_otp_code" element={<SendOtpCode />} />
+        <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
+      </Route>
+    </Routes>
     // </Router>
   );
 };
