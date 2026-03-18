@@ -71,10 +71,10 @@ const Navbar = () => {
               Login
             </NavLink>
             <NavLink
-              to="/signin"
+              to="/register"
               className="bg-[#7D4729] px-4 py-2 text-white rounded hover:bg-[#6B3F23]"
             >
-              Sign In
+              Sign Up
             </NavLink>
           </div>
 

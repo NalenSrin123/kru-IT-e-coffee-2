@@ -19,6 +19,7 @@ import SendResetPassword from "./services/auth/Send_Reset_password";
 import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 import SendOtpCode from "./services/auth/Sendotpcode";
 import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
+import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
+          <Route path='/config_menu' element={<Config_Menu/>} />
         </Route>
       </Routes>
     // </Router>
