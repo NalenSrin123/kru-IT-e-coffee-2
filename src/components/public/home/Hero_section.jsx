@@ -68,7 +68,7 @@ const HeroSection = () => {
 
         {/* Info Box */}
         <div className="bg-[#EAD7B7] py-24 relative">
-          <div className="absolute left-1/2 -top-32 -translate-x-1/2 w-[70%] max-w-5xl bg-white rounded-xl shadow-2xl grid grid-cols-[1.5fr_1fr] overflow-hidden">
+          <div className="absolute left-1/2 -top-32 -translate-x-1/2 w-[70%] max-w-5xl bg-white rounded-xl  grid grid-cols-[1.5fr_1fr] overflow-hidden">
             {/* Left Side */}
             <div className="p-10 border-r">
               <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -78,7 +78,7 @@ const HeroSection = () => {
                 Morbi justo vel diam non leo elementum massa. Molestie ipsum
                 condimentum egestas vitae ut cras aenean aoreet odionis.
               </p>
-              <button className="bg-[#7D4729] px-8 py-3 rounded-full text-white font-semibold hover:bg-[#b65e20] transition duration-300">
+              <button className="bg-[#7D4729] px-8 py-3 rounded-full text-white font-semibold hover:bg-[#b65e20] transition duration-300 hover:scale-105">
                 ORDER DRINKS
               </button>
             </div>

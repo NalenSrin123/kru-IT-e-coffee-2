@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Layouts
 import PublicLayout from "./app/layouts/PublicLayout";
@@ -19,10 +19,10 @@ import SendResetPassword from "./services/auth/Send_Reset_password";
 import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 import SendOtpCode from "./services/auth/Sendotpcode";
 import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
-import Form_Add_Coffee from "./dashboard/features/a1-core-crud-forms/coffee-category-crud/Form_Add_Coffee";
+import Contact_Page from "./components/public/contact/Contact_Page";
+
 const App = () => {
   return (
-    // <Router>
     <Routes>
       {/* Public Pages with Navbar/Footer */}
       <Route element={<PublicLayout />}>
@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact_Page />} />
       </Route>
 
       {/* Auth Pages without Navbar/Footer */}
@@ -38,16 +39,12 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/send-reset-password" element={<SendResetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route
-          path="/send-reset-password-in-email"
-          element={<ResetPasswordInEmail />}
-        />
+        <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
         <Route path="/send_otp_code" element={<SendOtpCode />} />
         <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
       </Route>
     </Routes>
-    // </Router>
   );
 };
 
-export default App;
+export default App
