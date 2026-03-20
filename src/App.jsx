@@ -21,9 +21,10 @@ import Home from "./components/public/home/Home_page";
 // import SendOtpCode from "./services/auth/Sendotpcode";
 // import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 
+
 // Dashboard 
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
-
+import AddCategoriesForm from "./services/categories/Add_Categories_form";  
 const App = () => {
   return (
     <Routes>
