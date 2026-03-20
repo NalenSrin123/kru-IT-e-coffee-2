@@ -2,14 +2,14 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Layouts
-import PublicLayout from "./app/layouts/PublicLayout";
-import AuthLayout from "./app/layouts/AuthLayout";
+// import PublicLayout from "./app/layouts/PublicLayout";
+// import AuthLayout from "./app/layouts/AuthLayout";
 
 // Public Pages
-import Home from "./components/public/home/Home_page";
-import MenuPage from "./components/public/menu/Menu_page";
-import ServicePage from "./components/public/service/Design_Service_Page";
-import About from "./components/public/about/About";
+// import Home from "./components/public/home/Home_page";
+// import MenuPage from "./components/public/menu/Menu_page";
+// import ServicePage from "./components/public/service/Design_Service_Page";
+// import About from "./components/public/about/About";
 
 // Auth Pages
 import Login from "./context/auth/form_login";
@@ -47,7 +47,8 @@ const App = () => {
         </Route>
       </Routes>
     // </Router>
-  );
+    <CustomerList/>
+   );
 };
 
 export default App
