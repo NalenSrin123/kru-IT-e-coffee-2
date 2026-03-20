@@ -19,6 +19,7 @@ import SendResetPassword from "./services/auth/Send_Reset_password";
 import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 import SendOtpCode from "./services/auth/Sendotpcode";
 import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
+import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 import Contact_Page from "./components/public/contact/Contact_Page";
 
 const App = () => {
@@ -33,17 +34,19 @@ const App = () => {
         <Route path="/contact" element={<Contact_Page />} />
       </Route>
 
-      {/* Auth Pages without Navbar/Footer */}
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/send-reset-password" element={<SendResetPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
-        <Route path="/send_otp_code" element={<SendOtpCode />} />
-        <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-      </Route>
-    </Routes>
+        {/* Auth Pages without Navbar/Footer */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/send-reset-password" element={<SendResetPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
+          <Route path="/send_otp_code" element={<SendOtpCode />} />
+          <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
+          <Route path='/config_menu' element={<Config_Menu/>} />
+        </Route>
+      </Routes>
+    // </Router>
   );
 };
 
