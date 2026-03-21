@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ResetPassword = () => {
   return (
@@ -23,7 +24,7 @@ const ResetPassword = () => {
             <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Confirm password" />
           </div>
           <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md mt-4 transition duration-200">
-            Reset Password
+            <Link to="/login">Reset Password</Link>
           </button>
         </div>
       </div>

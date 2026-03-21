@@ -5,42 +5,6 @@ function Footer() {
      return (
           <div>
                <footer className="w-full bg-gradient-to-b from-[#2D1810] via-[#3D2315] to-[#1A0F08] text-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-                         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-                              <div className="w-full lg:w-1/3 flex justify-center">
-                                   <div className="relative">
-                                        <div className="absolute inset-0 bg-amber-600/20 blur-2xl rounded-full"></div>
-                                        <img
-                                             src="https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-americano-coffee-beans-transparent-white-background-png-image_6698453.png"
-                                             alt="Coffee Beans"
-                                             className="relative w-32 sm:w-40 lg:w-56 object-contain drop-shadow-lg"
-                                        />
-                                   </div>
-                              </div>
-                              <div className="w-full lg:w-1/3 text-center lg:text-left">
-                                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 lg:mb-6">
-                                        <span className="block bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">Check Out Our</span>
-                                        <span className="block mt-2">Best Coffee</span>
-                                        <span className="block text-amber-400 mt-2">Beans</span>
-                                   </h1>
-
-                                   <button className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 px-6 lg:px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-amber-600/50 transform hover:scale-105">
-                                        Explore Our Products
-                                        <span className="text-lg">→</span>
-                                   </button>
-                              </div>
-                              <div className="w-full lg:w-1/3 flex justify-center">
-                                   <div className="relative">
-                                        <div className="absolute inset-0 bg-amber-500/20 blur-2xl rounded-full"></div>
-                                        <img
-                                             src="https://png.pngtree.com/png-vector/20240628/ourmid/pngtree-topview-coffee-bean-explosi-png-image_12744324.png"
-                                             alt="Coffee Beans Top View"
-                                             className="relative w-32 sm:w-40 lg:w-56 object-contain drop-shadow-lg"
-                                        />
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                          <div className="h-px bg-gradient-to-r from-transparent via-amber-600/40 to-transparent"></div>
                     </div>

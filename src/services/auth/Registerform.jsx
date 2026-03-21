@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/GoogleIcon.jsx";
 
 export default function Registerform() {
@@ -178,14 +179,14 @@ export default function Registerform() {
             className="w-full mt-6 py-3 rounded-xl text-white font-semibold text-sm tracking-wide bg-amber-900 cursor-pointer
               shadow-lg hover:opacity-90 active:scale-[0.99] transition-all duration-200"
           >
-            Sign up
+            <Link to='/confirm_otp_code'>Sign Up</Link>
           </button>
 
           {/* Login text */}
           <p className="mt-5 text-center text-sm text-gray-700">
             Already have an account?{" "}
             <span className="font-semibold text-blue-500 underline underline-offset-2 cursor-pointer transition-colors">
-              Sign in
+              <Link to="/login">Log in</Link>
             </span>
           </p>
 
