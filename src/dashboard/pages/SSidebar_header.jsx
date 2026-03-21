@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
-
+import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
+// import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -141,7 +145,11 @@ export default function CoffeeDashboardLayout() {
 
              {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Menu</div>
+                  {/* <div>Menu</div> */}
+                  <Link to="/dashboard/config_menu">
+                    Menu
+                  </Link>
+              
                   {/* <div>Category</div> */}
                 </div>
               )}
@@ -194,7 +202,9 @@ export default function CoffeeDashboardLayout() {
 
         {/* Content */}
         <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
+          <Routes>
+             <Route path="config_menu" element={<Config_Menu/>} />
+          </Routes>
         </main>
       </div>
     </div>
