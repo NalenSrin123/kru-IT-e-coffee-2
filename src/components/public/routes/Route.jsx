@@ -7,6 +7,7 @@ import Home from '../home/Home_page';
 import About from '../about/About'
 // import Contact from '../contact'
 import Hero_section from '../home/Hero_section';
+import ContactPage from '../contact/Contact_Page';
 function route() {
   return (
    <div>
@@ -21,7 +22,7 @@ function route() {
         <Route path="/menu"    element={<Menu_page />} />
         <Route path="/service"    element={<Service />} />
         <Route path="/about"    element={<About />} />
-        <Route path="/contact"/>
+        <Route path="/contact" element={<ContactPage/>}/>
       </Routes>
    </div>
   
