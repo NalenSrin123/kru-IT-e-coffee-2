@@ -1,18 +1,18 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Layouts
-// import PublicLayout from "./app/layouts/PublicLayout";
-// import AuthLayout from "./app/layouts/AuthLayout";
+Layouts
+ // import PublicLayout from "./app/layouts/PublicLayout";
+ // import AuthLayout from "./app/layouts/AuthLayout";
 
 
-// Public Pages
-import Home from "./components/public/home/Home_page";
+ // Public Pages
+ import Home from "./components/public/home/Home_page";
 // import MenuPage from "./components/public/menu/Menu_page";
 // import ServicePage from "./components/public/service/Design_Service_Page";
-// import About from "./components/public/about/About";
+ // import About from "./components/public/about/About";
 
-// Auth Pages
+  // Auth Pages
 // import Login from "./context/auth/form_login";
 // import Register from "./services/auth/Registerform";
 // import ResetPassword from "./services/auth/ResetPassword";
