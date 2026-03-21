@@ -60,6 +60,18 @@ export default function CoffeeDashboardLayout() {
             {/* Coffee Menu */}
             <div>
               <div
+           
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Users
+                </div>
+                
+              </div>
+
+            </div>
+            <div>
+              <div
                 onClick={() => toggleMenu("coffee")}
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
