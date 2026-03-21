@@ -85,7 +85,7 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <Coffee size={18} /> Coffee Menu
                 </div>
-                                <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
 
               </div>
 
@@ -135,10 +135,16 @@ export default function CoffeeDashboardLayout() {
               >
                 <div className="flex items-center gap-3">
                   <Settings size={18} /> Settings
+                  <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
                 </div>
               </div>
 
-             
+             {openMenu === "settings" && (
+                <div className="ml-8 text-sm text-gray-500 space-y-1">
+                  <div>Menu</div>
+                  {/* <div>Category</div> */}
+                </div>
+              )}
             </div>
 
           </nav>
