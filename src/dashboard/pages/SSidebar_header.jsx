@@ -46,15 +46,10 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <LayoutDashboard size={18} /> Dashboard
                 </div>
-                <span>{openMenu === "dashboard" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
 
-              {openMenu === "dashboard" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Overview</div>
-                  <div>Analytics</div>
-                </div>
-              )}
+          
             </div>
 
             {/* Coffee Menu */}
@@ -72,19 +67,32 @@ export default function CoffeeDashboardLayout() {
             </div>
             <div>
               <div
+           
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Customers
+                </div>
+                
+              </div>
+
+            </div>
+            <div>
+              <div
                 onClick={() => toggleMenu("coffee")}
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
                   <Coffee size={18} /> Coffee Menu
                 </div>
-                <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                                <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+
               </div>
 
-              {openMenu === "coffee" && (
+             {openMenu === "coffee" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add Coffee</div>
-                  <div>All Coffee</div>
+                  <div>Lists Coffee</div>
+                  <div>Category</div>
                 </div>
               )}
             </div>
@@ -98,16 +106,10 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <ShoppingCart size={18} /> Orders
                 </div>
-                <span>{openMenu === "orders" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+     
               </div>
 
-              {openMenu === "orders" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>All Orders</div>
-                  <div>Pending</div>
-                  <div>Completed</div>
-                </div>
-              )}
+            
             </div>
 
             {/* Wallet */}
@@ -117,18 +119,12 @@ export default function CoffeeDashboardLayout() {
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
-                  <Wallet size={18} /> My Wallet
+                  <Wallet size={18} /> Transaction
                 </div>
-                <span>{openMenu === "wallet" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
 
-              {openMenu === "wallet" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add New</div>
-                  <div>Cart List</div>
-                  <div>History</div>
-                </div>
-              )}
+             
             </div>
 
             {/* Settings */}
@@ -140,15 +136,9 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <Settings size={18} /> Settings
                 </div>
-                <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
               </div>
 
-              {openMenu === "settings" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Profile</div>
-                  <div>Security</div>
-                </div>
-              )}
+             
             </div>
 
           </nav>
