@@ -12,6 +12,7 @@ import Home from "./components/public/home/Home_page";
 // import ServicePage from "./components/public/service/Design_Service_Page";
 // import About from "./components/public/about/About";
 
+
 // Auth Pages
 // import Login from "./context/auth/form_login";
 // import Register from "./services/auth/Registerform";
@@ -23,6 +24,8 @@ import Home from "./components/public/home/Home_page";
 
 // Dashboard 
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
+
+
 
 const App = () => {
   return (
