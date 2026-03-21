@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
+import { Link, Route, Routes } from "react-router-dom";
+import Transaction from "../../components/dashboard/Payment/Transaction";
 
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
@@ -114,17 +116,16 @@ export default function CoffeeDashboardLayout() {
 
             {/* Wallet */}
             <div>
-              <div
+              <Link to={'/dashboard/transaction'}>
+                <div
                 onClick={() => toggleMenu("wallet")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center gap-3">
                   <Wallet size={18} /> Transaction
                 </div>
                 
               </div>
-
-             
+              </Link>
             </div>
 
             {/* Settings */}
@@ -194,7 +195,9 @@ export default function CoffeeDashboardLayout() {
 
         {/* Content */}
         <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
+          <Routes>
+            <Route path="transaction" element={<Transaction/>}/>
+          </Routes>
         </main>
       </div>
     </div>
