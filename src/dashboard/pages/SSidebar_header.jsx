@@ -3,13 +3,15 @@ import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
 
+
+
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
-
+  
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}

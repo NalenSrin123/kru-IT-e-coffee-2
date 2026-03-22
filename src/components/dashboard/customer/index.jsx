@@ -1,58 +1,29 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
+import axios from 'axios';
 function CustomerList() {
      const [search, setSearch] = useState("");
+     const [Customers ,setCustomer] = useState([]);
 
-     const users = [
-          {
-               id: 1,
-               name: "John Doe",
-               email: "john@gmail.com",
-               coffee: "Latte",
-               status: "Active",
-               createdAt: "2026-03-10",
-          },
-          {
-               id: 2,
-               name: "Sok Dara",
-               email: "dara@gmail.com",
-               coffee: "Cappuccino",
-               status: "Active",
-               createdAt: "2026-03-12",
-          },
-          {
-               id: 3,
-               name: "Kim Ly",
-               email: "kimly@gmail.com",
-               coffee: "Americano",
-               status: "Inactive",
-               createdAt: "2026-03-15",
-          },
-          {
-               id: 4,
-               name: "Sive nean",
-               email: "sivenean@gmail.com",
-               coffee: "Latte",
-               status: "Active",
-               createdAt: "2026-03-16",
-          },
-          {
-               id: 5,
-               name: "Chittra",
-               email: "chittra@gmail.com",
-               coffee: "Americano",
-               status: "Active",
-               createdAt: "2026-03-14",
-          },
-          {
-               id: 6,
-               name: "Srey nich",
-               email: "sreynich@gmail.com",
-               coffee: "Americano",
-               status: "Inactive",
-               createdAt: "2026-03-13",
-          },
-     ];
+     useEffect(()=>{
+          const getCustomers = async ()=>{
+               try {
+               
+                   const res = await axios.get(
+                         "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/customers",
+                         {
+                              headers: {
+                              Authorization: `Bearer 59|XxoZvsB8G6M4FjVrg58k9XMECkiMu8x4WlMF6BBq1eb1d31a`, // send token here
+                              },
+                         }
+                    );
+                    setCustomer(res.data.data);
+               } catch (error) {
+                    console.log(error)
+                    
+               }
+          }
+          getCustomers();
+     },[])
 
      // Format date
      const formatDate = (date) => {
@@ -60,8 +31,8 @@ function CustomerList() {
      };
 
      // Filter users
-     const filteredUsers = users.filter((user) =>
-          `${user.name} ${user.email}`
+     const filteredUsers = Customers.filter((customers) =>
+          `${customers.name} ${customers.email}`
                .toLowerCase()
                .includes(search.toLowerCase())
      );
@@ -99,8 +70,9 @@ function CustomerList() {
                                         <th className="p-3">ID</th>
                                         <th className="p-3">Name</th>
                                         <th className="p-3">Email</th>
-                                        <th className="p-3">Favorite Coffee</th>
+                                        <th className="p-3">Provider</th>
                                         <th className="p-3">Created At</th>
+                                        <th className="p-3">Last Login</th>
                                         <th className="p-3">Status</th>
                                         <th className="p-3">Action</th>
                                    </tr>
@@ -108,28 +80,25 @@ function CustomerList() {
 
                               <tbody>
                                    {filteredUsers.length > 0 ? (
-                                        filteredUsers.map((user) => (
+                                        filteredUsers.map((customers) => (
                                              <tr
-                                                  key={user.id}
+                                                  key={customers.id}
                                                   className="border-b hover:bg-gray-50 transition-colors"
                                              >
-                                                  <td className="p-3">{user.id}</td>
-                                                  <td className="p-3 font-medium">{user.name}</td>
-                                                  <td className="p-3 text-sm text-gray-600">{user.email}</td>
-                                                  <td className="p-3">{user.coffee}</td>
-
-                                                  <td className="p-3 text-sm">
-                                                       {formatDate(user.createdAt)}
-                                                  </td>
-
+                                                  <td className="p-3">{customers.id}</td>
+                                                  <td className="p-3 font-medium">{customers.name}</td>
+                                                  <td className="p-3 text-sm text-gray-600">{customers.email}</td>
+                                                  <td className="p-3">{customers.provider}</td>
+                                                  <td className="p-3 text-sm">{formatDate(customers.createdAt)}</td>
+                                                  <td className="p-3 text-sm">{formatDate(customers.last_login_at)}</td>
                                                   <td className="p-3">
                                                        <span
-                                                            className={`px-3 py-1 rounded-full text-xs font-semibold ${user.status === "Active"
+                                                            className={`px-3 py-1 rounded-full text-xs font-semibold ${customers.is_active === "Active"
                                                                  ? "bg-green-100 text-green-700"
                                                                  : "bg-red-100 text-red-600"
                                                                  }`}
                                                        >
-                                                            {user.status}
+                                                            {customers.is_active}
                                                        </span>
                                                   </td>
 
