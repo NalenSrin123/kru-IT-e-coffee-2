@@ -93,14 +93,13 @@ function CustomerList() {
                                                   <td className="p-3 text-sm">{formatDate(customers.last_login_at)}</td>
                                                   <td className="p-3">
                                                        <span
-                                                            className={`px-3 py-1 rounded-full text-xs font-semibold ${customers.is_active === "Active"
-                                                                 ? "bg-green-100 text-green-700"
-                                                                 : "bg-red-100 text-red-600"
-                                                                 }`}
+                                                            className={`px-3 py-1 rounded-full text-xs font-semibold 
+                                                                 ${customers.is_active == 1 ? "bg-green-100 text-green-700"  : "bg-red-100 text-red-600"}`}
                                                        >
-                                                            {customers.is_active}
+                                                            {customers.is_active == 1 ? " Active" : " Inactive"}
                                                        </span>
                                                   </td>
+
 
                                                   <td className="p-3 space-x-2">
                                                        <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors text-xs sm:text-sm">
