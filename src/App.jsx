@@ -26,6 +26,7 @@ import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
 import Checkout from "./components/public/checkout/Design_cart_page";
 import ContactPage from "./components/public/contact/Contact_Page";
+import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
 
 
 
@@ -53,7 +54,11 @@ const App = () => {
           <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-          <Route path="/dashboard" element={<CoffeeDashboardLayout />} />
+         
+        </Route>
+        <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
+               <Route index element={<h2>Dashboard Home</h2>} />
+               <Route path="users" element={<DesignPageUserList />} />
         </Route>
         
           
