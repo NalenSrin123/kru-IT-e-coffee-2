@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function DesignPageUserList() {
      const [search, setSearch] = useState("");
-
      const users = [
           {
                id: 1,

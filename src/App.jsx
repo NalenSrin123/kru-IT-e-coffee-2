@@ -6,6 +6,7 @@ import PublicLayout from "./app/layouts/PublicLayout";
 import AuthLayout from "./app/layouts/AuthLayout";
 
 
+
 // Public Pages
 import Home from "./components/public/home/Home_page";
 import MenuPage from "./components/public/menu/Menu_page";
@@ -26,6 +27,7 @@ import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
 import Checkout from "./components/public/checkout/Design_cart_page";
 import ContactPage from "./components/public/contact/Contact_Page";
+
 
 
 
@@ -56,7 +58,7 @@ const App = () => {
           <Route path="/dashboard/*" element={<CoffeeDashboardLayout />} />
         </Route>
         
-          
+       
 
       </Routes>
   );

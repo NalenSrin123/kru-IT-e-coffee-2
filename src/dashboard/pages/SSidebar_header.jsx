@@ -16,7 +16,7 @@ export default function CoffeeDashboardLayout() {
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
-
+  
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}
