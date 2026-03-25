@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
 import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
@@ -197,9 +198,9 @@ export default function CoffeeDashboardLayout() {
         </header>
 
         {/* Content */}
-        <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
-        </main>
+        <div className="main-content">
+        <Outlet />
+      </div>
       </div>
     </div>
   );
