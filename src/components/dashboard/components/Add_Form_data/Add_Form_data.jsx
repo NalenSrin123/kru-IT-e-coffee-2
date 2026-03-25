@@ -64,8 +64,6 @@ function Add_Form_data() {
                                 <button className='w-full rounded-xl text-center py-2 bg-blue-600 text-white font-medium hover:bg-blue-700'>Save →</button>
                             </NavLink>
                         </div>
-                        
-                    
                 </form>
             </div>
         </div>
