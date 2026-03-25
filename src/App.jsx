@@ -53,7 +53,7 @@ const App = () => {
           <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-          <Route path="/dashboard" element={<CoffeeDashboardLayout />} />
+          <Route path="/dashboard/*" element={<CoffeeDashboardLayout />} />
         </Route>
         
           
