@@ -4,15 +4,16 @@ export default function CoffeeLogin() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-900 p-4 sm:p-6">
-      <div className="w-full max-w-6xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
+    
+ <div className="min-h-screen flex items-center justify-center bg-amber-400/20 font-serif shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)]border border-amber-300/30">
+      <div className="w-full max-w-3xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
         {/* LEFT */}
-        <div className="bg-[#E8D3A8] p-6 sm:p-10 flex flex-col justify-center relative">
+        <div className="p-6 sm:p-10 flex flex-col justify-center relative bg-[#f9f7f3]  ">
           <button className="absolute right-4 top-4 sm:right-6 sm:top-6 text-gray-600 hover:text-black text-xl font-bold">
             ×
           </button>
 
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-[#6B4226] mb-1 sm:mb-2">KOFEE</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-[#6B4226] mb-1 sm:mb-2">E-Coffee</h1>
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Login</h2>
 
           {/* SIGNUP TEXT */}
@@ -88,23 +89,19 @@ export default function CoffeeLogin() {
               <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-4 sm:w-5" />
               Continue with Google
             </button>
-
-            <button className="w-full border rounded-xl py-2 flex items-center justify-center gap-3 hover:bg-white/40 text-sm">
-              <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" className="w-4 sm:w-5" />
-              Continue with Facebook
-            </button>
           </div>
         </div>
 
         {/* RIGHT IMAGE */}
         <div className="hidden md:block relative">
           <img
-            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+            src="https://i.pinimg.com/1200x/6f/ec/7d/6fec7dc6f451d9047c140df88536019e.jpg"
             alt="coffee"
             className="w-full h-full object-cover"
           />
         </div>
       </div>
     </div>
+       
   );
 }
