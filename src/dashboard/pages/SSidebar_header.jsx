@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import {
-  LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
+  LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp,
+  User
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import Transaction from "../../components/dashboard/Payment/Transaction";
 
@@ -16,7 +18,11 @@ export default function CoffeeDashboardLayout() {
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
-  
+
+  const navagate = useNavigate();
+  const handleClick = () => {
+    navagate("/customerlist");
+  }
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}
@@ -73,15 +79,17 @@ export default function CoffeeDashboardLayout() {
 
             </div>
             <div>
-              <div
+              <button 
+              onClick={handleClick}
            
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
-                  <Coffee size={18} /> Customers
+                 
+                  <User size={18} /> Customers
                 </div>
                 
-              </div>
+              </button>
 
             </div>
             <div>
