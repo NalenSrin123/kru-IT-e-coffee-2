@@ -35,6 +35,7 @@ const App = () => {
   return (
     <Routes>
        
+       {/* <Route path="/" element={<Navigate to="/" replace />} /> */}
        
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
