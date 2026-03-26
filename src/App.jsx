@@ -45,6 +45,7 @@ const App = () => {
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
               <Route path="/dashboard" element={<CoffeeDashboardLayout/>}/>
+              <Route path="/customerlist" element={<CustomerList/>}/>
         </Route>
       </Routes>
    
