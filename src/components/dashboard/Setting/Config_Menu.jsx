@@ -151,7 +151,7 @@ const Config_Menu = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-content-end bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.22),_transparent_32%),linear-gradient(180deg,_#fffaf5_0%,_#f5efe8_48%,_#efe6dc_100%)] px-4 py-8 text-stone-900 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex justify-content-end  px-4 py-8 text-stone-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="grid gap-6 xl:grid-cols-[1.12fr_0.88fr]">
           <section className="rounded-[30px] border border-white/70 bg-white/80 p-6 shadow-[0_24px_60px_rgba(120,53,15,0.1)] backdrop-blur-xl lg:p-7">
@@ -227,50 +227,6 @@ const Config_Menu = () => {
           </section>
 
           <section className="space-y-6">
-            <div className="rounded-[30px] border border-white/70 bg-white/80 p-6 shadow-[0_24px_60px_rgba(120,53,15,0.1)] backdrop-blur-xl lg:p-7">
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-900 text-white">
-                  <Palette size={22} />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-stone-900">Header styling</h2>
-                  <p className="text-sm text-stone-600">Switch presets or tune every important menu color.</p>
-                </div>
-              </div>
-              <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-1">
-                {stylePresets.map((preset) => (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    onClick={() => applyPreset(preset.styles)}
-                    className="rounded-[22px] border border-stone-200 bg-stone-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-stone-300 hover:bg-white"
-                  >
-                    <p className="text-sm font-semibold text-stone-900">{preset.title}</p>
-                    <p className="mt-1 text-sm leading-6 text-stone-600">{preset.description}</p>
-                  </button>
-                ))}
-              </div>
-
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {colorFields.map((field) => (
-                  <label key={field.key} className="rounded-[22px] border border-stone-200 bg-white p-4">
-                    <span className="mb-3 block text-sm font-medium text-stone-700">{field.label}</span>
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="color"
-                        value={styles[field.key]}
-                        onChange={(event) => handleStyleChange(field.key, event.target.value)}
-                        className="h-12 w-16 cursor-pointer rounded-xl border border-stone-200 bg-transparent"
-                      />
-                      <div className="flex-1 rounded-xl bg-stone-50 px-4 py-3 text-sm font-semibold tracking-[0.18em] text-stone-600 uppercase">
-                        {styles[field.key]}
-                      </div>
-                    </div>
-                  </label>
-                ))}
-              </div>
-            </div>
-
             <div className="rounded-[30px] border border-white/70 bg-white/80 p-6 shadow-[0_24px_60px_rgba(120,53,15,0.1)] backdrop-blur-xl lg:p-7">
               <div className="mb-5 flex items-center justify-between gap-4">
                 <div>

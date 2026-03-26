@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
 
+import Transaction from "../../components/dashboard/Payment/Transaction";
+
+import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
+// import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
-
+  
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}
@@ -46,18 +53,37 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <LayoutDashboard size={18} /> Dashboard
                 </div>
-                <span>{openMenu === "dashboard" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
 
-              {openMenu === "dashboard" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Overview</div>
-                  <div>Analytics</div>
-                </div>
-              )}
+          
             </div>
 
             {/* Coffee Menu */}
+            <div>
+              <div
+           
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Users
+                </div>
+                
+              </div>
+
+            </div>
+            <div>
+              <div
+           
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Customers
+                </div>
+                
+              </div>
+
+            </div>
             <div>
               <div
                 onClick={() => toggleMenu("coffee")}
@@ -67,12 +93,13 @@ export default function CoffeeDashboardLayout() {
                   <Coffee size={18} /> Coffee Menu
                 </div>
                 <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+
               </div>
 
-              {openMenu === "coffee" && (
+             {openMenu === "coffee" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add Coffee</div>
-                  <div>All Coffee</div>
+                  <div>Lists Coffee</div>
+                  <div>Category</div>
                 </div>
               )}
             </div>
@@ -86,37 +113,24 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <ShoppingCart size={18} /> Orders
                 </div>
-                <span>{openMenu === "orders" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+     
               </div>
 
-              {openMenu === "orders" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>All Orders</div>
-                  <div>Pending</div>
-                  <div>Completed</div>
-                </div>
-              )}
+            
             </div>
 
             {/* Wallet */}
             <div>
-              <div
+              <Link to={'/dashboard/transaction'}>
+                <div
                 onClick={() => toggleMenu("wallet")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center gap-3">
-                  <Wallet size={18} /> My Wallet
+                  <Wallet size={18} /> Transaction
                 </div>
-                <span>{openMenu === "wallet" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
-
-              {openMenu === "wallet" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add New</div>
-                  <div>Cart List</div>
-                  <div>History</div>
-                </div>
-              )}
+              </Link>
             </div>
 
             {/* Settings */}
@@ -127,14 +141,18 @@ export default function CoffeeDashboardLayout() {
               >
                 <div className="flex items-center gap-3">
                   <Settings size={18} /> Settings
+                  <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
                 </div>
-                <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
               </div>
 
-              {openMenu === "settings" && (
+             {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Profile</div>
-                  <div>Security</div>
+                  {/* <div>Menu</div> */}
+                  <Link to="/dashboard/config_menu">
+                    Menu
+                  </Link>
+              
+                  {/* <div>Category</div> */}
                 </div>
               )}
             </div>
@@ -186,7 +204,10 @@ export default function CoffeeDashboardLayout() {
 
         {/* Content */}
         <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
+          <Routes>
+            <Route path="transaction" element={<Transaction/>}/>
+             <Route path="config_menu" element={<Config_Menu/>} />
+          </Routes>
         </main>
       </div>
     </div>
