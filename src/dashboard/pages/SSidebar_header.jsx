@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp,
   User
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+import Transaction from "../../components/dashboard/Payment/Transaction";
+
+import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
+// import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -122,17 +129,16 @@ export default function CoffeeDashboardLayout() {
 
             {/* Wallet */}
             <div>
-              <div
+              <Link to={'/dashboard/transaction'}>
+                <div
                 onClick={() => toggleMenu("wallet")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center gap-3">
                   <Wallet size={18} /> Transaction
                 </div>
                 
               </div>
-
-             
+              </Link>
             </div>
 
             {/* Settings */}
@@ -149,7 +155,11 @@ export default function CoffeeDashboardLayout() {
 
              {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Menu</div>
+                  {/* <div>Menu</div> */}
+                  <Link to="/dashboard/config_menu">
+                    Menu
+                  </Link>
+              
                   {/* <div>Category</div> */}
                 </div>
               )}
@@ -202,7 +212,10 @@ export default function CoffeeDashboardLayout() {
 
         {/* Content */}
         <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
+          <Routes>
+            <Route path="transaction" element={<Transaction/>}/>
+             <Route path="config_menu" element={<Config_Menu/>} />
+          </Routes>
         </main>
       </div>
     </div>
