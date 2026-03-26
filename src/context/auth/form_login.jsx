@@ -41,19 +41,24 @@ export default function CoffeeLogin() {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-900 p-4 sm:p-6">
-      <div className="w-full max-w-6xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
-        
-        {/* LEFT SECTION (Form) */}
-        <div className="bg-[#E8D3A8] p-6 sm:p-10 flex flex-col justify-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#6B4226] mb-2">KOFEE</h1>
-          <h2 className="text-xl sm:text-2xl font-semibold mb-6">Login</h2>
+    
+ <div className="min-h-screen flex items-center justify-center bg-amber-400/20 font-serif shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)]border border-amber-300/30">
+      <div className="w-full max-w-3xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
+        {/* LEFT */}
+        <div className="p-6 sm:p-10 flex flex-col justify-center relative bg-[#f9f7f3]  ">
+          <button className="absolute right-4 top-4 sm:right-6 sm:top-6 text-gray-600 hover:text-black text-xl font-bold">
+            ×
+          </button>
 
-          <p className="text-sm mb-6">
-            Don’t have an account?{" "}
-            <Link to="/register" className="text-blue-600 hover:underline">
-              Create Now
-            </Link>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-[#6B4226] mb-1 sm:mb-2">E-Coffee</h1>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Login</h2>
+
+          {/* SIGNUP TEXT */}
+          <p className="text-xs sm:text-sm mb-4 sm:mb-6">
+            Don’t have an account?{' '}
+            <span className="text-blue-600 cursor-pointer hover:underline">
+              <Link to="/register">Create Now</Link>
+            </span>
           </p>
 
           <form onSubmit={handleLogin} className="flex flex-col">
@@ -99,23 +104,26 @@ export default function CoffeeLogin() {
               </Link>
             </div>
 
-            {/* LOGIN BUTTON */}
-            <button
-              type="submit"
-              disabled={loading}
-              className={`bg-[#6B4226] text-white py-2 rounded-xl font-medium transition mb-6 ${
-                loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
-              }`}
-            >
-              {loading ? "Logging in..." : "Login"}
+          {/* DIVIDER */}
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
+            <div className="flex-1 h-px bg-gray-400" />
+            <span className="text-xs sm:text-sm">OR</span>
+            <div className="flex-1 h-px bg-gray-400" />
+          </div>
+
+          {/* SOCIAL BUTTONS */}
+          <div className="space-y-2 sm:space-y-3">
+            <button className="w-full border rounded-xl py-2 flex items-center justify-center gap-3 hover:bg-white/40 text-sm">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-4 sm:w-5" />
+              Continue with Google
             </button>
-          </form>
+          </div>
         </div>
 
         {/* RIGHT SECTION (Image) */}
         <div className="hidden md:block">
           <img
-            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+            src="https://i.pinimg.com/1200x/6f/ec/7d/6fec7dc6f451d9047c140df88536019e.jpg"
             alt="coffee"
             className="w-full h-full object-cover"
           />
@@ -123,5 +131,6 @@ export default function CoffeeLogin() {
 
       </div>
     </div>
+       
   );
 }
