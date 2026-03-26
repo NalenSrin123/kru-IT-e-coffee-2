@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function DesignPageUserList() {
      const [search, setSearch] = useState("");
-
+     const navigate = useNavigate();
      const users = [
           {
                id: 1,
@@ -74,8 +74,11 @@ function DesignPageUserList() {
                          Coffee User List
                     </h1>
 
-                    <button className="bg-[#905E42] text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors text-sm sm:text-base w-full sm:w-auto">
-                         + Add User
+                   <button
+                    onClick={() => navigate("/dashboard/add-user")}
+                    className="bg-[#905E42] text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors text-sm sm:text-base w-full sm:w-auto"
+                    >
+                    + Add User
                     </button>
                </div>
 

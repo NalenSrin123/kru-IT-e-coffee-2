@@ -1,15 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/icons/GoogleIcon.jsx";
-
+import api from "../api/BaseURL/api.jsx";
 export default function Registerform() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+
+  const handlesubmit = async (e) => {
+  e.preventDefault(); // Prevent page reload
+  if (!name || !email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const res = await api.post("/register", {
+      name,
+      email,
+      password,
+      password_confirmation: password, 
+    });
+
+    const token = res.data.data.access_token; 
+    localStorage.setItem("token", token);
+    setName("");
+    setEmail("");
+    setPassword("");
+
+  } catch (error) {
+    if (error.response) {
+      console.log("Validation errors:", error.response.data.errors);
+      alert(
+        error.response.data.message || "Failed to register"
+      );
+    } else {
+      console.log("Failed to register (no response)");
+      alert("Failed to register (no response)");
+    }
+  }
+};
 
   return (
     <div className="min-h-screen flex items-start sm:items-center justify-center p-3 sm:p-4 md:p-6 bg-amber-400/20 font-serif">
       {/* Card */}
-      <div
+      <form action="" onSubmit={handlesubmit}>
+        <div
         className="relative w-full max-w-md rounded-2xl overflow-hidden my-4 sm:my-0 bg-white
         shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)]
         border border-amber-300/30"
@@ -54,6 +92,8 @@ export default function Registerform() {
                   </svg>
                 </span>
                 <input
+                onChange={e=>setName(e.target.value)}
+                value={name}
                   type="text"
                   placeholder="example"
                   className="w-full rounded-lg pl-9 pr-4 py-3 text-sm text-amber-950 bg-white/60
@@ -87,6 +127,8 @@ export default function Registerform() {
                   </svg>
                 </span>
                 <input
+                onChange={e=>setEmail(e.target.value)}
+                value={email}
                   type="email"
                   placeholder="example@gmail.com"
                   className="w-full rounded-lg pl-9 pr-4 py-3 text-sm text-amber-950 bg-white/60
@@ -120,6 +162,8 @@ export default function Registerform() {
                   </svg>
                 </span>
                 <input
+                onChange={e=>setPassword(e.target.value)}
+                value={password}
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="w-full rounded-lg pl-9 pr-10 py-3 text-sm text-amber-950 bg-white/60
@@ -175,11 +219,11 @@ export default function Registerform() {
 
           {/* Sign Up Button */}
           <button
-            type="button"
+            type="submit" 
             className="w-full mt-6 py-3 rounded-xl text-white font-semibold text-sm tracking-wide bg-amber-900 cursor-pointer
               shadow-lg hover:opacity-90 active:scale-[0.99] transition-all duration-200"
           >
-            <Link to='/confirm_otp_code'>Sign Up</Link>
+            <Link to='/login'>Sign Up</Link>
           </button>
 
           {/* Login text */}
@@ -211,6 +255,7 @@ export default function Registerform() {
           </button>
         </div>
       </div>
+      </form>
     </div>
   );
 }
