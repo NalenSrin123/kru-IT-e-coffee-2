@@ -4,7 +4,7 @@ import Index from "./components/dashboard/User/Iindex";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Index />} />
+      <Route path="/delete" element={<Index />} />
     </Routes>
   );
 }
