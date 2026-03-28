@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function App() {
+function Checkout() {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -61,20 +61,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="font-bold text-xl">Clothing.</div>
-          <nav className="space-x-4">
-            <a href="#" className="hover:text-gray-700">Home</a>
-            <a href="#" className="hover:text-gray-700">Shop</a>
-            <a href="#" className="hover:text-gray-700">Women</a>
-            <a href="#" className="hover:text-gray-700">Men</a>
-            <a href="#" className="hover:text-gray-700">Accessories</a>
-            <a href="#" className="hover:text-gray-700">Contact</a>
-          </nav>
-        </div>
-      </header>
+    
 
       {/* Shopping Cart */}
       <main className="container mx-auto px-4 py-8">
@@ -145,4 +132,4 @@ function App() {
   );
 }
 
-export default App;
+export default Checkout;

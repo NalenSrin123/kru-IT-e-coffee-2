@@ -8,6 +8,12 @@ import Reset_Password_In_Email from '../auth/Reset_Password_In_Email';
 import Sendotpcode from '../auth/Sendotpcode';
 import Form_Confirm_OTP from '../auth/Form_Confirm_OTP';
 import Config_Menu from '../../components/dashboard/Setting/Config_Menu';
+import List_Categories_Coffee from '../../dashboard/pages/coffee/design_list_coffee';
+
+
+
+
+
 
 export default function AuthRoutes() {
   return (
@@ -21,6 +27,11 @@ export default function AuthRoutes() {
       <Route path='/send_otp_code' element={<Sendotpcode />} />
       <Route path='/confirm_otp_code' element={<Form_Confirm_OTP />} />
       <Route path='/config_menu' element={<Config_Menu />} />
+      <Route path='/coffee-categories' element={<List_Categories_Coffee />} />
+      
+
+     
     </Routes>
   );
 }
+    

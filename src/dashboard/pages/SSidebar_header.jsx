@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {
-  LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
+import {useNavigate, Outlet} from "react-router-dom";
+import { LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp
 } from "lucide-react";
 
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
-
+    const navigate = useNavigate();
+    
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
@@ -40,24 +41,43 @@ export default function CoffeeDashboardLayout() {
             {/* Dashboard */}
             <div>
               <div
-                onClick={() => toggleMenu("dashboard")}
+                onClick={() => navigate("/dashboard")}
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
                   <LayoutDashboard size={18} /> Dashboard
                 </div>
-                <span>{openMenu === "dashboard" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
 
-              {openMenu === "dashboard" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Overview</div>
-                  <div>Analytics</div>
-                </div>
-              )}
+          
             </div>
 
             {/* Coffee Menu */}
+            <div>
+              <div
+                onClick={() => navigate("coffee-menu")}
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Users
+                </div>
+                
+              </div>
+
+            </div>
+            <div>
+              <div
+           
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+              >
+                <div className="flex items-center gap-3">
+                  <Coffee size={18} /> Customers
+                </div>
+                
+              </div>
+
+            </div>
             <div>
               <div
                 onClick={() => toggleMenu("coffee")}
@@ -67,14 +87,22 @@ export default function CoffeeDashboardLayout() {
                   <Coffee size={18} /> Coffee Menu
                 </div>
                 <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+
               </div>
 
-              {openMenu === "coffee" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add Coffee</div>
-                  <div>All Coffee</div>
-                </div>
-              )}
+             {openMenu === "coffee" && (
+           <div className="ml-8 text-sm text-gray-500 space-y-1">
+
+          <div onClick={() => navigate("coffee-list")} className="cursor-pointer hover:text-[#6f4e37]">
+      Lists Coffee
+    </div>
+
+          <div  onClick={() => navigate("coffee-categories")}  className="cursor-pointer hover:text-[#6f4e37]">
+            Coffee Categories
+          </div>
+
+        </div>
+          )}
             </div>
 
             {/* Orders */}
@@ -86,16 +114,10 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <ShoppingCart size={18} /> Orders
                 </div>
-                <span>{openMenu === "orders" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+     
               </div>
 
-              {openMenu === "orders" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>All Orders</div>
-                  <div>Pending</div>
-                  <div>Completed</div>
-                </div>
-              )}
+            
             </div>
 
             {/* Wallet */}
@@ -105,18 +127,12 @@ export default function CoffeeDashboardLayout() {
                 className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
-                  <Wallet size={18} /> My Wallet
+                  <Wallet size={18} /> Transaction
                 </div>
-                <span>{openMenu === "wallet" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
+                
               </div>
 
-              {openMenu === "wallet" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Add New</div>
-                  <div>Cart List</div>
-                  <div>History</div>
-                </div>
-              )}
+             
             </div>
 
             {/* Settings */}
@@ -127,14 +143,14 @@ export default function CoffeeDashboardLayout() {
               >
                 <div className="flex items-center gap-3">
                   <Settings size={18} /> Settings
+                  <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
                 </div>
-                <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
               </div>
 
-              {openMenu === "settings" && (
+             {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Profile</div>
-                  <div>Security</div>
+                  <div>Menu</div>
+                  {/* <div>Category</div> */}
                 </div>
               )}
             </div>
@@ -186,7 +202,7 @@ export default function CoffeeDashboardLayout() {
 
         {/* Content */}
         <main className="p-6">
-          <h2 className="text-xl font-semibold">Coffee Dashboard </h2>
+          <Outlet />
         </main>
       </div>
     </div>
