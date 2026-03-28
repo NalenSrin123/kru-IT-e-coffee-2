@@ -9,56 +9,61 @@ export default function CoffeeLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
- const handleLogin = async (e) => {
-  if (e) e.preventDefault();
-  try {
-    const res = await axios.post(
-      "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/login",
-      { email, password },
-      { headers: { Accept: "application/json" } }
-    );
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-    console.log("Login Response:", res.data);
+    try {
+      const res = await axios.post(
+        "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/login",
+        { email, password },
+        { headers: { Accept: "application/json" } }
+      );
 
-    if (res.data.status === "success") {
-      
-     
-      const token = res.data.data.token; 
-      localStorage.setItem("token", token);
+      console.log("Login Response:", res.data);
 
-      alert("Login success!");
-      
-     
-      navigate("/", { replace: true });
-      
-    } else {
-      alert(res.data.message || "Login failed");
+      if (res.data.status === "success") {
+        const token = res.data.data.token;
+        localStorage.setItem("token", token);
+
+        alert("Login successful!");
+        navigate("/dashboard", { replace: true });
+      } else {
+        alert(res.data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert(
+        error.response?.data?.message || "Something went wrong during login!"
+      );
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Error logic:", error);
-    alert("Something went wrong!");
-  }
-};
+  };
 
   return (
-    
- <div className="min-h-screen flex items-center justify-center bg-amber-400/20 font-serif shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)]border border-amber-300/30">
+    <div className="min-h-screen flex items-center justify-center bg-amber-400/20 font-serif shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)] border border-amber-300/30">
       <div className="w-full max-w-3xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
         {/* LEFT */}
-        <div className="p-6 sm:p-10 flex flex-col justify-center relative bg-[#f9f7f3]  ">
-          <button className="absolute right-4 top-4 sm:right-6 sm:top-6 text-gray-600 hover:text-black text-xl font-bold">
+        <div className="p-6 sm:p-10 flex flex-col justify-center relative bg-[#f9f7f3]">
+          {/* Close button (optional) */}
+          <button
+            className="absolute right-4 top-4 sm:right-6 sm:top-6 text-gray-600 hover:text-black text-xl font-bold"
+            onClick={() => console.log("Close clicked")}
+          >
             ×
           </button>
 
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-[#6B4226] mb-1 sm:mb-2">E-Coffee</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-wide text-[#6B4226] mb-1 sm:mb-2">
+            E-Coffee
+          </h1>
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Login</h2>
 
-          {/* SIGNUP TEXT */}
           <p className="text-xs sm:text-sm mb-4 sm:mb-6">
-            Don’t have an account?{' '}
-            <span className="text-blue-600 cursor-pointer hover:underline">
-              <Link to="/register">Create Now</Link>
-            </span>
+            Don’t have an account?{" "}
+            <Link to="/register" className="text-blue-600 cursor-pointer hover:underline">
+              Create Now
+            </Link>
           </p>
 
           <form onSubmit={handleLogin} className="flex flex-col">
@@ -98,26 +103,38 @@ export default function CoffeeLogin() {
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" className="accent-[#6B4226]" /> Remember me
               </label>
-              {/* i delete university */}
-              <Link to="/send-reset-password"  className="text-blue-600 hover:underline">
+              <Link to="/send-reset-password" className="text-blue-600 hover:underline">
                 Forgot Password?
               </Link>
             </div>
 
-          {/* DIVIDER */}
-          <div className="flex items-center gap-3 mb-4 sm:mb-6">
-            <div className="flex-1 h-px bg-gray-400" />
-            <span className="text-xs sm:text-sm">OR</span>
-            <div className="flex-1 h-px bg-gray-400" />
-          </div>
-
-          {/* SOCIAL BUTTONS */}
-          <div className="space-y-2 sm:space-y-3">
-            <button className="w-full border rounded-xl py-2 flex items-center justify-center gap-3 hover:bg-white/40 text-sm">
-              <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-4 sm:w-5" />
-              Continue with Google
+            {/* SUBMIT BUTTON */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="mb-4 py-2 px-4 rounded-lg bg-[#6B4226] text-white font-semibold hover:bg-[#59321d] disabled:opacity-50"
+            >
+              {loading ? "Logging in..." : "Login"}
             </button>
-          </div>
+
+            {/* DIVIDER */}
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="flex-1 h-px bg-gray-400" />
+              <span className="text-xs sm:text-sm">OR</span>
+              <div className="flex-1 h-px bg-gray-400" />
+            </div>
+
+            {/* SOCIAL BUTTONS */}
+            <div className="space-y-2 sm:space-y-3">
+              <button className="w-full border rounded-xl py-2 flex items-center justify-center gap-3 hover:bg-white/40 text-sm">
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  className="w-4 sm:w-5"
+                />
+                Continue with Google
+              </button>
+            </div>
+          </form>
         </div>
 
         {/* RIGHT SECTION (Image) */}
@@ -128,9 +145,7 @@ export default function CoffeeLogin() {
             className="w-full h-full object-cover"
           />
         </div>
-
       </div>
     </div>
-       
   );
 }

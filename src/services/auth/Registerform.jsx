@@ -21,7 +21,7 @@ export default function Registerform() {
       name,
       email,
       password,
-      password_confirmation: password, 
+     
     });
 
     const token = res.data.data.access_token; 

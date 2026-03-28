@@ -31,18 +31,13 @@ import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList
 
 const App = () => {
   return (
-    <Routes>
-       
-       {/* <Route path="/" element={<Navigate to="/" replace />} /> */}
-       
+    <Routes>   
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/service" element={<ServicePage />} />
           <Route path="/about" element={<About />} />
         </Route>
-
-        {/* Auth Pages without Navbar/Footer */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -56,8 +51,7 @@ const App = () => {
         </Route>
       </Route>
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-         
-        </Route>
+     
         <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
                <Route index element={<h2>Dashboard Home</h2>} />
                <Route path="users" element={<DesignPageUserList />} />
