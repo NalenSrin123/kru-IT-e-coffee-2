@@ -8,6 +8,7 @@ import About from '../about/About'
 // import Contact from '../contact'
 import Hero_section from '../home/Hero_section';
 import ContactPage from '../contact/Contact_Page';
+import design_list_coffee from '../../dashboard/pages/design_list_coffee';
 function route() {
   return (
    <div>
@@ -23,6 +24,7 @@ function route() {
         <Route path="/service"    element={<Service />} />
         <Route path="/about"    element={<About />} />
         <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/dashboard/coffee/list" element={<design_list_coffee />} />
       </Routes>
    </div>
   
