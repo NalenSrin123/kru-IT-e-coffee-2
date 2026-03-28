@@ -12,7 +12,7 @@ import Home from "./components/public/home/Home_page";
 import MenuPage from "./components/public/menu/Menu_page";
 import ServicePage from "./components/public/service/Design_Service_Page";
 import About from "./components/public/about/About";
-
+import Index from "./components/dashboard/User/Iindex";
 // Auth Pages
 import Login from "./context/auth/form_login";
 import Register from "./services/auth/Registerform";
@@ -56,8 +56,8 @@ const App = () => {
         <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
                <Route index element={<h2>Dashboard Home</h2>} />
                <Route path="users" element={<DesignPageUserList />} />
-               <Route path="/delete" element={<Index />} />
         </Route>
+        <Route path="/delete" element={<Index />} /> 
       </Routes>
    
      
