@@ -29,6 +29,8 @@ import Checkout from "./components/public/checkout/Design_cart_page";
 import ContactPage from "./components/public/contact/Contact_Page";
 import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
 import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
+import CustomerList from "./components/dashboard/customer";
+import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
 
 
 const App = () => {
@@ -62,7 +64,10 @@ const App = () => {
       </Route>
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
           <Route path="/dashboard/*" element={<CoffeeDashboardLayout />} />
-        </Route>
+          <Route path="/dashboard/customers" element={<CustomerList />} />
+          <Route path="/dashboard/customers/:id" element={<UpdateCustomer />} />
+        {/* </Route> */}
+       
         
        
 
