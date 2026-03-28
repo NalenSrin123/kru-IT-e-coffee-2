@@ -26,6 +26,7 @@ import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
 import Checkout from "./components/public/checkout/Design_cart_page";
 import ContactPage from "./components/public/contact/Contact_Page";
+import DesignListCoffee from "./dashboard/pages/coffee/design_list_coffee";
 
 
 
@@ -54,7 +55,18 @@ const App = () => {
           <Route path="/send_otp_code" element={<SendOtpCode />} />
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
           <Route path="/dashboard" element={<CoffeeDashboardLayout />} />
+          <Route path="/design-list-coffee" element={<DesignListCoffee />} />
+          <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
+        <Route index element={
+          <div className="p-6">
+            <h2 className="text-xl font-semibold">☕ Welcome to Coffee Dashboard</h2>
+          </div>
+        } />
+        <Route path="coffee-list" element={<DesignListCoffee />} />
+      </Route>
         </Route>
+
+        
         
           
 
