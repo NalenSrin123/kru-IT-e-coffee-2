@@ -56,6 +56,7 @@ const App = () => {
         <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
                <Route index element={<h2>Dashboard Home</h2>} />
                <Route path="users" element={<DesignPageUserList />} />
+               <Route path="/delete" element={<Index />} />
         </Route>
       </Routes>
    
