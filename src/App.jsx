@@ -22,7 +22,6 @@ import ResetPasswordInEmail from "./services/auth/Reset_Password_In_Email";
 import SendOtpCode from "./services/auth/Sendotpcode";
 import ConfirmOtpCode from "./services/auth/Form_Confirm_OTP";
 import CoffeeDashboardLayout from "./dashboard/pages/SSidebar_header";
-import CustomerList from "./dashboard/pages/customer/CustomerList";
 import Checkout from "./components/public/checkout/Design_cart_page";
 import ContactPage from "./components/public/contact/Contact_Page";
 import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
