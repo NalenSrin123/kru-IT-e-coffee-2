@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import {LayoutDashboard,Coffee,ShoppingCart,Wallet,Settings,Bell,Search,Globe,MessageCircle,ChevronDown,ChevronUp,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
+import Transaction from "../../components/dashboard/Payment/Transaction";
+
+import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
+// import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
   const navigate = useNavigate();
@@ -11,6 +16,10 @@ export default function CoffeeDashboardLayout() {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
+  const navagate = useNavigate();
+  const handleClick = () => {
+    navagate("/customerlist");
+  }
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}
@@ -88,8 +97,17 @@ export default function CoffeeDashboardLayout() {
             </div>
 
             {/* Wallet */}
-            <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
-              <Wallet size={18} /> Transaction
+            <div>
+              <Link to={'/dashboard/transaction'}>
+                <div
+                onClick={() => toggleMenu("wallet")}
+                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100">
+                <div className="flex items-center gap-3">
+                  <Wallet size={18} /> Transaction
+                </div>
+                
+              </div>
+              </Link>
             </div>
 
             {/* Settings */}
@@ -110,7 +128,12 @@ export default function CoffeeDashboardLayout() {
 
               {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Menu</div>
+                  {/* <div>Menu</div> */}
+                  <Link to="/dashboard/config_menu">
+                    Menu
+                  </Link>
+              
+                  {/* <div>Category</div> */}
                 </div>
               )}
             </div>
@@ -147,7 +170,10 @@ export default function CoffeeDashboardLayout() {
 
         {/* ✅ CONTENT FIXED */}
         <main className="p-6">
-          <Outlet />
+          <Routes>
+            <Route path="transaction" element={<Transaction/>}/>
+             <Route path="config_menu" element={<Config_Menu/>} />
+          </Routes>
         </main>
       </div>
     </div>
