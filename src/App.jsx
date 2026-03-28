@@ -56,8 +56,11 @@ const App = () => {
         </Route>
       </Route>
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-              <Route path="/dashboard" element={<CoffeeDashboardLayout/>}/>
-              <Route path="/customerlist" element={<CustomerList/>}/>
+         
+        </Route>
+        <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
+               <Route index element={<h2>Dashboard Home</h2>} />
+               <Route path="users" element={<DesignPageUserList />} />
         </Route>
       </Routes>
    

@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Routes } from "react-router-dom";
-import { Route } from "react-router-dom";
-import {
-  LayoutDashboard, Coffee, ShoppingCart, Wallet, Settings, Bell, Search, Globe, MessageCircle, ChevronDown, ChevronUp,
-  User
+import { useNavigate, Outlet } from "react-router-dom";
+import {LayoutDashboard,Coffee,ShoppingCart,Wallet,Settings,Bell,Search,Globe,MessageCircle,ChevronDown,ChevronUp,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +10,7 @@ import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
 // import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
+  const navigate = useNavigate();
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
@@ -49,49 +46,28 @@ export default function CoffeeDashboardLayout() {
 
           {/* Menu */}
           <nav className="flex flex-col gap-2">
-
             {/* Dashboard */}
-            <div>
-              <div
-                onClick={() => toggleMenu("dashboard")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
-                <div className="flex items-center gap-3">
-                  <LayoutDashboard size={18} /> Dashboard
-                </div>
-                
-              </div>
+            <div
+              onClick={() => navigate("/dashboard")}
+              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+            >
+              <LayoutDashboard size={18} /> Dashboard
+            </div>
 
-          
+            {/* Users */}
+            <div
+              onClick={() => navigate("/dashboard/users")}
+              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+            >
+              <Coffee size={18} /> Users
+            </div>
+
+            {/* Customers */}
+            <div className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
+              <Coffee size={18} /> Customers
             </div>
 
             {/* Coffee Menu */}
-            <div>
-              <div
-           
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
-                <div className="flex items-center gap-3">
-                  <Coffee size={18} /> Users
-                </div>
-                
-              </div>
-
-            </div>
-            <div>
-              <button 
-              onClick={handleClick}
-           
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
-                <div className="flex items-center gap-3">
-                 
-                  <User size={18} /> Customers
-                </div>
-                
-              </button>
-
-            </div>
             <div>
               <div
                 onClick={() => toggleMenu("coffee")}
@@ -100,11 +76,14 @@ export default function CoffeeDashboardLayout() {
                 <div className="flex items-center gap-3">
                   <Coffee size={18} /> Coffee Menu
                 </div>
-                <span>{openMenu === "coffee" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
-
+                {openMenu === "coffee" ? (
+                  <ChevronUp size={16} />
+                ) : (
+                  <ChevronDown size={16} />
+                )}
               </div>
 
-             {openMenu === "coffee" && (
+              {openMenu === "coffee" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
                   <div>Lists Coffee</div>
                   <div>Category</div>
@@ -113,18 +92,8 @@ export default function CoffeeDashboardLayout() {
             </div>
 
             {/* Orders */}
-            <div>
-              <div
-                onClick={() => toggleMenu("orders")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-              >
-                <div className="flex items-center gap-3">
-                  <ShoppingCart size={18} /> Orders
-                </div>
-     
-              </div>
-
-            
+            <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
+              <ShoppingCart size={18} /> Orders
             </div>
 
             {/* Wallet */}
@@ -149,11 +118,15 @@ export default function CoffeeDashboardLayout() {
               >
                 <div className="flex items-center gap-3">
                   <Settings size={18} /> Settings
-                  <span>{openMenu === "settings" ? (<ChevronUp size={16} />) : (<ChevronDown size={16} />)}</span>
                 </div>
+                {openMenu === "settings" ? (
+                  <ChevronUp size={16} />
+                ) : (
+                  <ChevronDown size={16} />
+                )}
               </div>
 
-             {openMenu === "settings" && (
+              {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
                   {/* <div>Menu</div> */}
                   <Link to="/dashboard/config_menu">
@@ -164,7 +137,6 @@ export default function CoffeeDashboardLayout() {
                 </div>
               )}
             </div>
-
           </nav>
         </div>
 
@@ -179,29 +151,15 @@ export default function CoffeeDashboardLayout() {
             <Search size={16} className="text-gray-400" />
             <input
               type="text"
-              placeholder="Search coffee, orders..."
+              placeholder="Search..."
               className="bg-transparent outline-none ml-2 w-full text-sm"
             />
           </div>
 
           <div className="flex items-center gap-5">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-gray-100 rounded-full">
-                <Globe size={16} />
-              </div>
-              <div className="p-2 bg-gray-100 rounded-full">
-                <MessageCircle size={16} />
-
-
-              </div>
-              <div className="relative p-2 bg-gray-100 rounded-full">
-                <Bell size={16} />
-                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-                  3
-                </span>
-              </div>
-            </div>
-
+            <Globe />
+            <MessageCircle />
+            <Bell />
             <img
               src="/download (1).png"
               alt="user"
@@ -210,7 +168,7 @@ export default function CoffeeDashboardLayout() {
           </div>
         </header>
 
-        {/* Content */}
+        {/* ✅ CONTENT FIXED */}
         <main className="p-6">
           <Routes>
             <Route path="transaction" element={<Transaction/>}/>
