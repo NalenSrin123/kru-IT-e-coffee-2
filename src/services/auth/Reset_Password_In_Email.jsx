@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Reset_Password_In_Email() {
   return (
@@ -15,14 +16,14 @@ function Reset_Password_In_Email() {
           If you didn't request a new password, you can safely delete this email.
         </p>
 
-        <div className="flex justify-center mb-10">
-          <a
-            href="#"
-            className="bg-indigo-500 hover:bg-indigo-600 text-white text-base font-normal px-24 py-4 rounded transition-colors duration-200"
+        <div className="flex justify-center mb-10">    
+          <Link
+            to="/reset-password"
+            className="bg-indigo-500 hover:bg-indigo-600 text-white text-base font-normal px-24 py-4 rounded-3xl transition-colors duration-200"
             style={{ minWidth: 340, textAlign: "center", textDecoration: "none", display: "inline-block" }}
           >
             Reset Password
-          </a>
+          </Link>
         </div>
 
         <p className="text-gray-500 text-sm mb-1">If that doesn't work, copy and paste the following link in your browser:</p>
