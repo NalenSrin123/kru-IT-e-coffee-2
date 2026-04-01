@@ -9,8 +9,9 @@ export default function CoffeeLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
- const handleLogin = async (e) => {
+const handleLogin = async (e) => {
   if (e) e.preventDefault();
+  setLoading(true); // Start loading
   try {
     const res = await axios.post(
       "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/login",
@@ -21,25 +22,38 @@ export default function CoffeeLogin() {
     console.log("Login Response:", res.data);
 
     if (res.data.status === "success") {
-      
+      const token = res.data.data.token;
      
-      const token = res.data.data.token; 
+      const role = res.data.data.user.role; 
+
+    
       localStorage.setItem("token", token);
+      localStorage.setItem("role", role); 
 
       alert("Login success!");
-      
+
      
-      navigate("/", { replace: true });
+      if (role === "admin") {
+        navigate("/dashboard", { replace: true });
+      } else if (role === "customer") {
+        navigate("/", { replace: true });
+      } else {
+     
+        navigate("/", { replace: true });
+      }
       
     } else {
       alert(res.data.message || "Login failed");
     }
   } catch (error) {
     console.error("Error logic:", error);
-    alert("Something went wrong!");
+  
+    const msg = error.response?.data?.message || "Something went wrong!";
+    alert(msg);
+  } finally {
+    setLoading(false); 
   }
 };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-neutral-900 p-4 sm:p-6">
       <div className="w-full max-w-6xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">

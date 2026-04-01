@@ -62,11 +62,12 @@ const App = () => {
       </Route>
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
           <Route path="/dashboard/*" element={<CoffeeDashboardLayout />} />
-        </Route>
+          
+        </Routes>
         
        
 
-      </Routes>
+      
   );
 };
 
