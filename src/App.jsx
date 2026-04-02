@@ -60,7 +60,7 @@ const App = () => {
                <Route path="users" element={<DesignPageUserList />} />
         </Route>
         <Route path="/delete" element={<Index />} /> 
-        <Route path="/category" element={<AddCategory />} /> 
+       
       </Routes>
    
      
