@@ -27,6 +27,7 @@ import ContactPage from "./components/public/contact/Contact_Page";
 import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
 import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
 import CustomerList from "./components/dashboard/customer";
+import GetUser from "./components/dashboard/Coffee/GetUser";
 import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
 import AddCategory from "./components/dashboard/Category/AddCategory";
 
@@ -58,9 +59,10 @@ const App = () => {
         <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
                <Route index element={<h2>Dashboard Home</h2>} />
                <Route path="users" element={<DesignPageUserList />} />
+               <Route path="getusers" element={<GetUser />} />
         </Route>
         <Route path="/delete" element={<Index />} /> 
-       
+
       </Routes>
    
      

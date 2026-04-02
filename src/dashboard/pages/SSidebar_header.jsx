@@ -170,10 +170,9 @@ export default function CoffeeDashboardLayout() {
 
         {/* ✅ CONTENT FIXED */}
         <main className="p-6">
-          <Routes>
-            <Route path="transaction" element={<Transaction/>}/>
-             <Route path="config_menu" element={<Config_Menu/>} />
-          </Routes>
+<main className="p-6">
+  <Outlet />   {/* 🔥 THIS IS THE FIX */}
+</main>
         </main>
       </div>
     </div>
