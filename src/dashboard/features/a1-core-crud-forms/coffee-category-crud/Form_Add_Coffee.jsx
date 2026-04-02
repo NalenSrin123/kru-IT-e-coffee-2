@@ -82,12 +82,12 @@ const Form_Add_Coffee = () => {
   const discountedPrice = calculateDiscountedPrice();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4 sm:py-8 px-3 sm:px-4">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 py-4 sm:py-8 px-3 sm:px-4">
       <div className="max-w-3xl mx-auto">
         {/* Main Form Card */}
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-4 sm:px-6 py-4 sm:py-5">
+          <div className="bg-linear-to-r from-amber-600 to-amber-700 px-4 sm:px-6 py-4 sm:py-5">
             <h2 className="text-xl sm:text-2xl font-bold text-white">
               Add New Menu Item
             </h2>
@@ -291,7 +291,7 @@ const Form_Add_Coffee = () => {
           <div className="mt-6 sm:mt-8">
             <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border-2 border-amber-100">
               {/* Preview Header */}
-              <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-4 sm:px-6 py-3 sm:py-4">
+              <div className="bg-linear-to-r from-purple-600 to-purple-700 px-4 sm:px-6 py-3 sm:py-4">
                 <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                   <svg
                     className="w-4 h-4 sm:w-5 sm:h-5"
@@ -322,7 +322,7 @@ const Form_Add_Coffee = () => {
               {/* Preview Content */}
               <div className="p-4 sm:p-6">
                 {/* Menu Card Preview */}
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border-2 border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="bg-linear-to-br from-gray-50 to-white rounded-xl border-2 border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
                   {/* Image Section */}
                   <div className="relative h-40 sm:h-48 bg-gray-100">
                     {imagePreview ? (
@@ -332,7 +332,7 @@ const Form_Add_Coffee = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                      <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
                         <svg
                           className="w-12 h-12 text-gray-400"
                           fill="none"
