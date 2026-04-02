@@ -28,6 +28,7 @@ import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
 import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
 import CustomerList from "./components/dashboard/customer";
 import GetUser from "./components/dashboard/Coffee/GetUser";
+import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
 
 
 const App = () => {
