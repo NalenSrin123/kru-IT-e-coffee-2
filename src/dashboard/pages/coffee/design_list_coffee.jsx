@@ -12,7 +12,28 @@ export default function DesignListCoffee() {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
 
-  const filtered = coffees.filter((c) =>
+
+  const [coffeeList, setCoffeeList] = useState(coffees);
+  const deleteCoffee = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this coffee?");
+      if (!confirmed) return;  // stop here if user clicks Cancel
+
+      try {
+        const res = await fetch(`http://localhost:8000/v1/products/${id}`, {
+          method: "DELETE",
+        });
+
+        if (!res.ok) {
+          throw new Error("Delete failed");
+        }
+
+        setCoffeeList((prev) => prev.filter((c) => c.id !== id));
+      } catch (error) {
+        console.error("Delete error:", error);
+      }
+  };
+
+  const filtered = coffeeList.filter((c) =>
     c.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -115,7 +136,7 @@ export default function DesignListCoffee() {
                   <td className="py-3 px-3">
                     <div className="flex gap-2">
                       <button className="bg-amber-700 hover:bg-amber-800 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">Edit</button>
-                      <button className="bg-red-50 hover:bg-red-100 text-red-500 text-xs font-semibold px-3 py-1.5 rounded-lg border border-red-100 transition">Delete</button>
+                      <button onClick={() => deleteCoffee(coffee.id)} className="bg-red-50 hover:bg-red-100 text-red-500 text-xs font-semibold px-3 py-1.5 rounded-lg border border-red-100 transition">Delete</button>
                     </div>
                   </td>
                 </tr>
