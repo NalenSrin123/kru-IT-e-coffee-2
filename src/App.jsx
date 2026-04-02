@@ -29,6 +29,7 @@ import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList
 import CustomerList from "./components/dashboard/customer";
 import GetUser from "./components/dashboard/Coffee/GetUser";
 import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
+import AddCategory from "./components/dashboard/Category/AddCategory";
 
 
 const App = () => {
