@@ -28,6 +28,7 @@ import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
 import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
 import CustomerList from "./components/dashboard/customer";
 import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
+import AddCategory from "./components/dashboard/Category/AddCategory";
 
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
                <Route path="users" element={<DesignPageUserList />} />
         </Route>
         <Route path="/delete" element={<Index />} /> 
+        <Route path="/category" element={<AddCategory />} /> 
       </Routes>
    
      
