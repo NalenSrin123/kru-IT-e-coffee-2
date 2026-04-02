@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate, Outlet,Link, Routes, Route } from "react-router-dom";
-import {LayoutDashboard,Coffee,ShoppingCart,Wallet,Settings,Bell,Search,Globe,MessageCircle,ChevronDown,ChevronUp,
+import { useNavigate, Outlet, Link, Routes, Route } from "react-router-dom";
+import {
+  LayoutDashboard,
+  Coffee,
+  ShoppingCart,
+  Wallet,
+  Settings,
+  Bell,
+  Search,
+  Globe,
+  MessageCircle,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
-
 
 import Transaction from "../../components/dashboard/Payment/Transaction";
 
@@ -19,7 +29,7 @@ export default function CoffeeDashboardLayout() {
   const navagate = useNavigate();
   const handleClick = () => {
     navagate("/customerlist");
-  }
+  };
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
       {/* Sidebar */}
@@ -86,7 +96,9 @@ export default function CoffeeDashboardLayout() {
               {openMenu === "coffee" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
                   <div>Lists Coffee</div>
-                  <div>Category</div>
+                  <button onClick={() => navigate("categories")}>
+                    Category
+                  </button>
                 </div>
               )}
             </div>
@@ -98,15 +110,15 @@ export default function CoffeeDashboardLayout() {
 
             {/* Wallet */}
             <div>
-              <Link to={'/dashboard/transaction'}>
+              <Link to={"/dashboard/transaction"}>
                 <div
-                onClick={() => toggleMenu("wallet")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-                <div className="flex items-center gap-3">
-                  <Wallet size={18} /> Transaction
+                  onClick={() => toggleMenu("wallet")}
+                  className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+                >
+                  <div className="flex items-center gap-3">
+                    <Wallet size={18} /> Transaction
+                  </div>
                 </div>
-                
-              </div>
               </Link>
             </div>
 
@@ -129,10 +141,8 @@ export default function CoffeeDashboardLayout() {
               {openMenu === "settings" && (
                 <div className="ml-8 text-sm text-gray-500 space-y-1">
                   {/* <div>Menu</div> */}
-                  <Link to="/dashboard/config_menu">
-                    Menu
-                  </Link>
-              
+                  <Link to="/dashboard/config_menu">Menu</Link>
+
                   {/* <div>Category</div> */}
                 </div>
               )}
