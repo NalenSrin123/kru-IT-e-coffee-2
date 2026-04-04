@@ -1,107 +1,257 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Form_Add_Coffee = () => {
-  const [formData, setFormData] = useState({
-    rating: 5,
-    name: "",
-    description: "",
-    price: "",
-    discount: "",
-    image: null,
-  });
+const API = "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api";
 
-  const [imagePreview, setImagePreview] = useState(null);
+const init = {
+  category_id: "",
+  name: "",
+  sku: "",
+  description: "",
+  is_available: true,
+  is_active: true,
+  image: null,
+};
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+export default function Form_Add_Coffee() {
+  const [categories, setCategories] = useState([]),
+    [categoryLoading, setCategoryLoading] = useState(true),
+    [categoryError, setCategoryError] = useState(""),
+    [formData, setFormData] = useState(init),
+    [imagePreview, setImagePreview] = useState(null),
+    [isSubmitting, setIsSubmitting] = useState(false),
+    [feedback, setFeedback] = useState({ type: "", text: "" });
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(`${API}/v1/categories`),
+          result = await response.json().catch(() => ({}));
+        if (!response.ok)
+          throw new Error(
+            result.message || result.error || "Failed to load categories",
+          );
+        const list = result?.data?.data || result?.data || result || [];
+        setCategories(Array.isArray(list) ? list : []);
+      } catch (error) {
+        setCategoryError(error.message || "Failed to load categories");
+      } finally {
+        setCategoryLoading(false);
+      }
+    })();
+  }, []);
+
+  const handleInputChange = (e) =>
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     }));
-  };
-
-  const handleRatingChange = (rating) => {
-    setFormData((prev) => ({
-      ...prev,
-      rating,
-    }));
-  };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        image: file,
-      }));
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file) return;
+    setFormData((prev) => ({ ...prev, image: file }));
+    const reader = new FileReader();
+    reader.onloadend = () => setImagePreview(reader.result);
+    reader.readAsDataURL(file);
+  };
+  const resetForm = () => {
+    setFormData(init);
+    setImagePreview(null);
   };
 
-  const calculateDiscountedPrice = () => {
-    const originalPrice = parseFloat(formData.price) || 0;
-    const discountPercent = parseFloat(formData.discount) || 0;
-
-    if (originalPrice > 0 && discountPercent > 0) {
-      const discounted =
-        originalPrice - (originalPrice * discountPercent) / 100;
-      return discounted.toFixed(2);
-    }
-    return null;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const discountedPrice = calculateDiscountedPrice();
-
-    const menuItem = {
-      rating: formData.rating,
-      ratingStars:
-        "★".repeat(formData.rating) + "☆".repeat(5 - formData.rating),
-      name: formData.name,
-      description: formData.description,
-      originalPrice: formData.price
-        ? `$${parseFloat(formData.price).toFixed(2)}`
-        : null,
-      discount: formData.discount ? `${formData.discount}%` : null,
-      finalPrice: discountedPrice ? `$${discountedPrice}` : null,
-      image: formData.image,
-      imagePreview: imagePreview,
-    };
-
-    console.log("New menu item:", menuItem);
-    alert("Menu item added! Check console for details.");
+    setIsSubmitting(true);
+    setFeedback({ type: "", text: "" });
+    try {
+      const payload = {
+        category_id: Number(formData.category_id),
+        name: formData.name.trim(),
+        sku: formData.sku.trim(),
+        description: formData.description.trim(),
+        is_available: formData.is_available,
+        is_active: formData.is_active,
+      };
+      const productResponse = await fetch(`${API}/v1/products`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const productResult = await productResponse.json().catch(() => ({}));
+      if (!productResponse.ok)
+        throw new Error(
+          productResult.message ||
+            productResult.error ||
+            "Failed to create product",
+        );
+      const productId = productResult?.data?.id ?? productResult?.id;
+      if (formData.image && productId) {
+        const imageFormData = new FormData();
+        imageFormData.append("image", formData.image);
+        const imageResponse = await fetch(
+          `${API}/v1/products/${productId}/image`,
+          { method: "POST", body: imageFormData },
+        );
+        const imageResult = await imageResponse.json().catch(() => ({}));
+        if (!imageResponse.ok)
+          throw new Error(
+            imageResult.message ||
+              imageResult.error ||
+              "Product saved but image upload failed",
+          );
+      }
+      setFeedback({ type: "success", text: "Product added successfully." });
+      resetForm();
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        text: error.message || "Failed to add product.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
-  const discountedPrice = calculateDiscountedPrice();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4 sm:py-8 px-3 sm:px-4">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 py-4 sm:py-8 px-3 sm:px-4">
       <div className="max-w-3xl mx-auto">
-        {/* Main Form Card */}
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-4 sm:px-6 py-4 sm:py-5">
+          <div className="bg-linear-to-r from-amber-600 to-amber-700 px-4 sm:px-6 py-4 sm:py-5">
             <h2 className="text-xl sm:text-2xl font-bold text-white">
-              Add New Menu Item
+              Add New Product
             </h2>
             <p className="text-amber-100 text-xs sm:text-sm mt-1">
-              Fill in the details below
+              Creates a product with the documented API and uploads its image
+              separately.
             </p>
           </div>
-
-          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="px-4 sm:px-6 py-4 sm:py-6 space-y-4"
           >
-            {/* Image Upload */}
+            {feedback.text && (
+              <div
+                className={`rounded-lg px-4 py-3 text-sm font-medium ${feedback.type === "success" ? "bg-green-50 text-green-700 border border-green-200" : "bg-red-50 text-red-700 border border-red-200"}`}
+              >
+                {feedback.text}
+              </div>
+            )}
+            <div className="space-y-1">
+              <label
+                htmlFor="category_id"
+                className="block text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                Category
+              </label>
+              <select
+                id="category_id"
+                name="category_id"
+                value={formData.category_id}
+                onChange={handleInputChange}
+                required
+                disabled={categoryLoading || categories.length === 0}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"
+              >
+                <option value="">
+                  {categoryLoading
+                    ? "Loading categories..."
+                    : "Select a category"}
+                </option>
+                {categories.map((category) => {
+                  const categoryId = category.id ?? category.category_id;
+                  const categoryName =
+                    category.name ?? category.title ?? `Category ${categoryId}`;
+                  return (
+                    <option key={categoryId} value={categoryId}>
+                      {categoryName}
+                    </option>
+                  );
+                })}
+              </select>
+              {categoryError && (
+                <p className="text-xs text-red-600">{categoryError}</p>
+              )}
+            </div>
+            <div className="space-y-1">
+              <label
+                htmlFor="name"
+                className="block text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                Product Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                placeholder="e.g., Cappuccino"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"
+              />
+            </div>
+            <div className="space-y-1">
+              <label
+                htmlFor="sku"
+                className="block text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                SKU
+              </label>
+              <input
+                type="text"
+                id="sku"
+                name="sku"
+                value={formData.sku}
+                onChange={handleInputChange}
+                required
+                placeholder="e.g., CAP001"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"
+              />
+            </div>
+            <div className="space-y-1">
+              <label
+                htmlFor="description"
+                className="block text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                rows="3"
+                placeholder="Hot coffee"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none"
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label className="flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3">
+                <input
+                  type="checkbox"
+                  name="is_available"
+                  checked={formData.is_available}
+                  onChange={handleInputChange}
+                  className="h-4 w-4 accent-amber-600"
+                />
+                <span className="text-sm font-medium text-gray-700">
+                  Available
+                </span>
+              </label>
+              <label className="flex items-center gap-3 rounded-lg border border-gray-300 px-4 py-3">
+                <input
+                  type="checkbox"
+                  name="is_active"
+                  checked={formData.is_active}
+                  onChange={handleInputChange}
+                  className="h-4 w-4 accent-amber-600"
+                />
+                <span className="text-sm font-medium text-gray-700">
+                  Active
+                </span>
+              </label>
+            </div>
             <div className="space-y-2">
               <label className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Product Image
@@ -143,317 +293,16 @@ const Form_Add_Coffee = () => {
                 </label>
               </div>
             </div>
-
-            {/* Rating */}
-            <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
-                Rating
-              </label>
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      type="button"
-                      onClick={() => handleRatingChange(star)}
-                      className="focus:outline-none"
-                    >
-                      <svg
-                        className={`w-6 h-6 sm:w-7 sm:h-7 ${
-                          star <= formData.rating
-                            ? "text-amber-400"
-                            : "text-gray-300"
-                        } transition-colors hover:text-amber-400`}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    </button>
-                  ))}
-                </div>
-                <span className="text-xs sm:text-sm text-gray-500">
-                  {formData.rating}/5
-                </span>
-              </div>
-            </div>
-
-            {/* Product Name */}
-            <div className="space-y-1">
-              <label
-                htmlFor="name"
-                className="block text-xs sm:text-sm font-semibold text-gray-700"
-              >
-                Product Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-                placeholder="e.g., Cappuccino"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"
-              />
-            </div>
-
-            {/* Description */}
-            <div className="space-y-1">
-              <label
-                htmlFor="description"
-                className="block text-xs sm:text-sm font-semibold text-gray-700"
-              >
-                Description
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                required
-                rows="2"
-                placeholder="Describe your product..."
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition resize-none"
-              />
-            </div>
-
-            {/* Price and Discount */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <label
-                  htmlFor="price"
-                  className="block text-xs sm:text-sm font-semibold text-gray-700"
-                >
-                  Price ($)
-                </label>
-                <div className="relative">
-                  <span className="absolute left-3 top-2 text-gray-500 text-sm">
-                    $
-                  </span>
-                  <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleInputChange}
-                    required
-                    min="0"
-                    step="0.01"
-                    placeholder="0.00"
-                    className="w-full pl-7 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label
-                  htmlFor="discount"
-                  className="block text-xs sm:text-sm font-semibold text-gray-700"
-                >
-                  Discount (%)
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    id="discount"
-                    name="discount"
-                    value={formData.discount}
-                    onChange={handleInputChange}
-                    min="0"
-                    max="100"
-                    step="1"
-                    placeholder="0"
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition pr-8"
-                  />
-                  <span className="absolute right-3 top-2 text-gray-500 text-sm">
-                    %
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 text-sm sm:text-base mt-4"
+              disabled={isSubmitting}
+              className="w-full bg-amber-600 hover:bg-amber-700 disabled:bg-amber-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 text-sm sm:text-base mt-4"
             >
-              Add to Menu
+              {isSubmitting ? "Saving..." : "Add Product"}
             </button>
           </form>
         </div>
-
-        {/* Live Preview Card - This appears UNDER the form on all screen sizes */}
-        {(formData.name ||
-          formData.description ||
-          formData.price ||
-          imagePreview) && (
-          <div className="mt-6 sm:mt-8">
-            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border-2 border-amber-100">
-              {/* Preview Header */}
-              <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-4 sm:px-6 py-3 sm:py-4">
-                <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                  <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                  Live Preview
-                </h3>
-                <p className="text-purple-100 text-xs mt-1">
-                  See how your item will look on the menu
-                </p>
-              </div>
-
-              {/* Preview Content */}
-              <div className="p-4 sm:p-6">
-                {/* Menu Card Preview */}
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border-2 border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
-                  {/* Image Section */}
-                  <div className="relative h-40 sm:h-48 bg-gray-100">
-                    {imagePreview ? (
-                      <img
-                        src={imagePreview}
-                        alt={formData.name || "Menu item"}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                        <svg
-                          className="w-12 h-12 text-gray-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="1.5"
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                    )}
-
-                    {/* Discount Badge */}
-                    {formData.discount && parseFloat(formData.discount) > 0 && (
-                      <div className="absolute top-2 right-2 bg-red-500 text-white text-xs sm:text-sm font-bold px-2 py-1 rounded-full shadow-lg">
-                        {formData.discount}% OFF
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="p-4 sm:p-5">
-                    {/* Rating Stars */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                              i < formData.rating
-                                ? "text-amber-400"
-                                : "text-gray-300"
-                            }`}
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <span className="text-xs text-gray-500">
-                        ({formData.rating}/5)
-                      </span>
-                    </div>
-
-                    {/* Product Name */}
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
-                      {formData.name || "Product Name"}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2">
-                      {formData.description || "Description will appear here"}
-                    </p>
-
-                    {/* Price Section */}
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      {discountedPrice ? (
-                        <>
-                          <span className="text-xl sm:text-2xl font-bold text-amber-600">
-                            ${discountedPrice}
-                          </span>
-                          <span className="text-sm sm:text-base text-gray-400 line-through">
-                            ${parseFloat(formData.price || 0).toFixed(2)}
-                          </span>
-                          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold">
-                            Save $
-                            {(
-                              parseFloat(formData.price) -
-                              parseFloat(discountedPrice)
-                            ).toFixed(2)}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-xl sm:text-2xl font-bold text-amber-600">
-                          ${parseFloat(formData.price || 0).toFixed(2)}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Add to Cart Button (Preview) */}
-                    <button className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition transform hover:scale-[1.02]">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-
-                {/* Preview Info Summary */}
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="font-semibold text-gray-700">Rating:</span>
-                    <span className="ml-1 text-gray-600">
-                      {formData.rating}/5
-                    </span>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="font-semibold text-gray-700">Price:</span>
-                    <span className="ml-1 text-gray-600">
-                      ${formData.price || "0.00"}
-                    </span>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg col-span-2 sm:col-span-1">
-                    <span className="font-semibold text-gray-700">
-                      Discount:
-                    </span>
-                    <span className="ml-1 text-gray-600">
-                      {formData.discount || "0"}%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
-};
-
-export default Form_Add_Coffee;
+}

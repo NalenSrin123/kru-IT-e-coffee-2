@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function CustomerList() {
   const [search, setSearch] = useState("");
-  const [Customers, setCustomer] = useState([]);
+  const [customers, setCustomer] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const getCustomers = async () => {
@@ -34,7 +34,7 @@ function CustomerList() {
   };
 
   // Filter users
-  const filteredUsers = Customers.filter((customer) =>
+  const filteredUsers = customers.filter((customer) =>
     `${customer.name} ${customer.email}`
       .toLowerCase()
       .includes(search.toLowerCase()),
@@ -45,7 +45,7 @@ function CustomerList() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
-          Coffee User List
+          Customer List
         </h1>
 
         <button className="bg-[#905E42] text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors text-sm sm:text-base w-full sm:w-auto">
@@ -188,7 +188,7 @@ function CustomerList() {
                 <div className="flex gap-2 pt-2 border-t">
                   <button
                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors text-xs sm:text-sm"
-                    onClick={() => navigate(`/update-customer/${customer.id}`)}
+                    onClick={() => navigate(`/dashboard/customers/${user.id}`)}
                   >
                     Edit
                   </button>

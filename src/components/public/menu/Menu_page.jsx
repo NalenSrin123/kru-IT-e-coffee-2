@@ -5,7 +5,7 @@ const defaultCategories = ["All", "Hot Coffee", "Iced Coffee", "Non-Coffee Drink
 const Menu_page = () => {
     const [categories, setCategories] = useState(defaultCategories);
     const [products, setProducts] = useState([]);
-    const [activeCategory, setActiveCategory] = useState("All"); // ✅ added
+    const [activeCategory, setActiveCategory] = useState("All"); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ const Menu_page = () => {
         fetchProducts();
     }, []);
 
-    // ✅ moved inside component so it can access state setters
+    
     const fetchProducts = async () => {
         try {
             setLoading(true);
@@ -25,11 +25,11 @@ const Menu_page = () => {
             const data = await response.json();
             console.log('Products Response:', data);
 
-            // ✅ correct nested path
+            
             const productsList = data.data?.data || [];
             setProducts(productsList);
 
-            // ✅ extract category names (adjust field name to match your API)
+            
             if (productsList.length > 0) {
                 const uniqueCategories = [
                     ...new Set(productsList.map(p => p.category?.name).filter(Boolean))
@@ -48,7 +48,7 @@ const Menu_page = () => {
         }
     };
 
-    // ✅ filter products based on active category
+    
     const filteredProducts = activeCategory === "All"
         ? products
         : products.filter(p => p.category?.name === activeCategory);
@@ -99,10 +99,10 @@ const Menu_page = () => {
                 {categories.map((cat) => (
                     <button
                         key={cat}
-                        onClick={() => setActiveCategory(cat)} // ✅ now works
+                        onClick={() => setActiveCategory(cat)}
                         className={`w-[45%] sm:w-[30%] md:w-auto px-6 py-3 text-sm md:text-base 
                             rounded-full font-medium transition-all duration-300 cursor-pointer
-                            ${activeCategory === cat  // ✅ correct active check
+                            ${activeCategory === cat
                                 ? "bg-[#8B5E3C] text-white shadow-md"
                                 : "bg-gray-100 text-[#8B5E3C] hover:bg-[#8B5E3C] hover:text-white"
                             }`}
@@ -114,7 +114,7 @@ const Menu_page = () => {
 
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex flex-wrap gap-6 justify-center">
-                    {filteredProducts.length > 0 ? ( // ✅ use filteredProducts
+                    {filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <div
                                 key={product.id}
