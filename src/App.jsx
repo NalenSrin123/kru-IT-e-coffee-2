@@ -11,6 +11,8 @@ import MenuPage from "./components/public/menu/Menu_page";
 import ServicePage from "./components/public/service/Design_Service_Page";
 import About from "./components/public/about/About";
 import Index from "./components/dashboard/User/Iindex";
+import UpdateProduct from "./app/features/product/UpdateProduct";
+
 // Auth Pages
 import Login from "./context/auth/form_login";
 import Register from "./services/auth/Registerform";
@@ -74,6 +76,7 @@ const App = () => {
         <Route path="orders" element={<OrdersPage />} />
         <Route path="transaction" element={<Transaction />} />
         <Route path="config_menu" element={<Config_Menu />} />
+        <Route path="/update-product/:id" element={<UpdateProduct />} />
       </Route>
       <Route path="/delete" element={<Index />} />
     </Routes>
