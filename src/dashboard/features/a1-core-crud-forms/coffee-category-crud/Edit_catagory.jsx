@@ -77,7 +77,7 @@ const Edit_catagory = () => {
 
       // Redirect after 2 seconds
       setTimeout(() => {
-        navigate("/categories");
+        navigate("/dashboard/categories");
       }, 2000);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to update category");
@@ -88,7 +88,7 @@ const Edit_catagory = () => {
   };
 
   const handleCancel = () => {
-    navigate("/categories");
+    navigate("/dashboard/categories");
   };
 
   if (loading) {
@@ -103,15 +103,6 @@ const Edit_catagory = () => {
       </div>
     );
   }
-  <button
-    onClick={() => handleClick(item.id)}
-    className="bg-[#6f4e37] text-white px-3 py-1.5 rounded-md text-xs flex items-center gap-1 mx-auto"
-  >
-    <Edit size={14} /> Edit
-  </button>;
-  const handleClick = (categoryId) => {
-    navigate(`/categories/edit/${categoryId}`);
-  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#EAD7B7]">
       <div className="w-full max-w-md bg-[#fde7d8] p-8 rounded-2xl shadow-lg">

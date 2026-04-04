@@ -1,47 +1,53 @@
 import React, { useState } from "react";
-import { useNavigate, Outlet, Link, Routes, Route } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard,
-  Coffee,
-  ShoppingCart,
-  Wallet,
-  Settings,
   Bell,
-  Search,
-  Globe,
-  MessageCircle,
   ChevronDown,
   ChevronUp,
+  CupSoda,
+  Globe,
+  LayoutDashboard,
+  MessageCircle,
+  Search,
+  Settings,
+  ShoppingCart,
+  Users,
+  Wallet,
+  Coffee,
 } from "lucide-react";
 
-import Transaction from "../../components/dashboard/Payment/Transaction";
-
-import Config_Menu from "../../components/dashboard/Setting/Config_Menu";
-// import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 export default function CoffeeDashboardLayout() {
   const [openMenu, setOpenMenu] = useState(null);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = (menu) => {
-    setOpenMenu(openMenu === menu ? null : menu);
+    setOpenMenu((currentMenu) => (currentMenu === menu ? null : menu));
   };
 
-  const navagate = useNavigate();
-  const handleClick = () => {
-    navagate("/customerlist");
-  };
+  const linkClassName = ({ isActive }) =>
+    `flex items-center gap-3 rounded-lg p-2 transition ${
+      isActive
+        ? "bg-[#f3ebe6] text-[#905E42] font-medium"
+        : "text-gray-700 hover:bg-gray-100"
+    }`;
+
+  const coffeeMenuOpen =
+    openMenu === "coffee" ||
+    location.pathname === "/dashboard/coffee-menu" ||
+    location.pathname.startsWith("/dashboard/categories");
+  const settingsOpen =
+    openMenu === "settings" ||
+    location.pathname.startsWith("/dashboard/config_menu");
+
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
-      {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md p-4 flex flex-col justify-between">
         <div>
-          {/* Logo */}
           <div className="flex items-center gap-2 mb-8">
             <Coffee className="text-orange-500" />
             <h1 className="text-xl font-bold">e-Coffee</h1>
           </div>
 
-          {/* Profile */}
           <div className="flex items-center gap-3 mb-6">
             <img
               src="/download (1).png"
@@ -54,108 +60,115 @@ export default function CoffeeDashboardLayout() {
             </div>
           </div>
 
-          {/* Menu */}
           <nav className="flex flex-col gap-2">
-            {/* Dashboard */}
-            <div
-              onClick={() => navigate("/dashboard")}
-              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-            >
+            <NavLink to="/dashboard" end className={linkClassName}>
               <LayoutDashboard size={18} /> Dashboard
-            </div>
+            </NavLink>
 
-            {/* Users */}
-            <div
-              onClick={() => navigate("/dashboard/users")}
-              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-            >
-              <Coffee size={18} /> Users
-            </div>
+            <NavLink to="/dashboard/users" className={linkClassName}>
+              <Users size={18} /> Users
+            </NavLink>
 
-            {/* Customers */}
-            <div className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100">
-              <Coffee size={18} /> Customers
-            </div>
+            <NavLink to="/dashboard/customers" className={linkClassName}>
+              <Users size={18} /> Customers
+            </NavLink>
 
-            {/* Coffee Menu */}
             <div>
-              <div
+              <button
+                type="button"
                 onClick={() => toggleMenu("coffee")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+                className={`flex w-full justify-between items-center rounded-lg p-2 transition ${
+                  coffeeMenuOpen
+                    ? "bg-[#f3ebe6] text-[#905E42] font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
               >
-                <div className="flex items-center gap-3">
-                  <Coffee size={18} /> Coffee Menu
-                </div>
-                {openMenu === "coffee" ? (
+                <span className="flex items-center gap-3">
+                  <CupSoda size={18} /> Coffee Menu
+                </span>
+                {coffeeMenuOpen ? (
                   <ChevronUp size={16} />
                 ) : (
                   <ChevronDown size={16} />
                 )}
-              </div>
+              </button>
 
-              {openMenu === "coffee" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  <div>Lists Coffee</div>
-                  <button onClick={() => navigate("categories")}>
+              {coffeeMenuOpen && (
+                <div className="ml-8 mt-1 flex flex-col gap-1 text-sm">
+                  <NavLink
+                    to="/dashboard/coffee-menu"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
+                    Lists Coffee
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/categories"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
                     Category
-                  </button>
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            {/* Orders */}
-            <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
+            <NavLink to="/dashboard/orders" className={linkClassName}>
               <ShoppingCart size={18} /> Orders
-            </div>
+            </NavLink>
 
-            {/* Wallet */}
-            <div>
-              <Link to={"/dashboard/transaction"}>
-                <div
-                  onClick={() => toggleMenu("wallet")}
-                  className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
-                >
-                  <div className="flex items-center gap-3">
-                    <Wallet size={18} /> Transaction
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <NavLink to="/dashboard/transaction" className={linkClassName}>
+              <Wallet size={18} /> Transaction
+            </NavLink>
 
-            {/* Settings */}
             <div>
-              <div
+              <button
+                type="button"
                 onClick={() => toggleMenu("settings")}
-                className="flex justify-between items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+                className={`flex w-full justify-between items-center rounded-lg p-2 transition ${
+                  settingsOpen
+                    ? "bg-[#f3ebe6] text-[#905E42] font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
               >
-                <div className="flex items-center gap-3">
+                <span className="flex items-center gap-3">
                   <Settings size={18} /> Settings
-                </div>
-                {openMenu === "settings" ? (
+                </span>
+                {settingsOpen ? (
                   <ChevronUp size={16} />
                 ) : (
                   <ChevronDown size={16} />
                 )}
-              </div>
+              </button>
 
-              {openMenu === "settings" && (
-                <div className="ml-8 text-sm text-gray-500 space-y-1">
-                  {/* <div>Menu</div> */}
-                  <Link to="/dashboard/config_menu">Menu</Link>
-
-                  {/* <div>Category</div> */}
+              {settingsOpen && (
+                <div className="ml-8 mt-1 flex flex-col gap-1 text-sm">
+                  <NavLink
+                    to="/dashboard/config_menu"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
+                    Menu
+                  </NavLink>
                 </div>
               )}
             </div>
           </nav>
         </div>
 
-        <p className="text-xs text-gray-400">© 2026 Coffee System</p>
+        <p className="text-xs text-gray-400">(c) 2026 Coffee System</p>
       </aside>
 
-      {/* Main */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
         <header className="flex items-center justify-between px-6 py-4 border-b bg-white">
           <div className="flex items-center bg-gray-100 px-4 py-2 rounded-full w-1/3">
             <Search size={16} className="text-gray-400" />
@@ -178,11 +191,8 @@ export default function CoffeeDashboardLayout() {
           </div>
         </header>
 
-        {/* ✅ CONTENT FIXED */}
-        <main className="p-6">
-<main className="p-6">
-  <Outlet />   {/* 🔥 THIS IS THE FIX */}
-</main>
+        <main className="p-6 overflow-y-auto">
+          <Outlet />
         </main>
       </div>
     </div>
