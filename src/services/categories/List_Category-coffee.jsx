@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { Edit, Search, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 const List_Categories_Coffee = () => {
@@ -43,7 +43,7 @@ const List_Categories_Coffee = () => {
   const navigate = useNavigate();
 
   const handleClick = (categoryId) => {
-    navigate(`/categories/edit/${categoryId}`);
+    navigate(`/dashboard/categories/edit/${categoryId}`);
   };
   const [searchTerm, setSearchTerm] = useState("");
   const [query, setQuery] = useState("");

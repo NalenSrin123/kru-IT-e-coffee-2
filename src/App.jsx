@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Layouts
 import PublicLayout from "./app/layouts/PublicLayout";
@@ -30,6 +30,11 @@ import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
 import List_Categories_Coffee from "./services/categories/List_Category-coffee.jsx";
 import Edit_catagory from "./dashboard/features/a1-core-crud-forms/coffee-category-crud/Edit_catagory.jsx";
 import AddCategory from "./components/dashboard/Category/AddCategory";
+import OverviewPage from "./dashboard/features/Overview_page";
+import OrdersPage from "./dashboard/features/Orders_page";
+import Transaction from "./components/dashboard/Payment/Transaction";
+import Config_Menu from "./components/dashboard/Setting/Config_Menu";
+import DesignListCoffee from "./dashboard/pages/coffee/design_list_coffee";
 
 
 const App = () => {
@@ -52,25 +57,23 @@ const App = () => {
           element={<ResetPasswordInEmail />}
         />
         <Route path="/send_otp_code" element={<SendOtpCode />} />
-        <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
-          <Route index element={<DesignPageUserList />} />
-          <Route path="add-user" element={<AddUserForm />} />
-        </Route>
       </Route>
       <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
 
       <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
-        <Route index element={<h2>Dashboard Home</h2>} />
+        <Route index element={<OverviewPage />} />
         <Route path="users" element={<DesignPageUserList />} />
-          <Route path="getusers" element={<GetUser />} />
-        <Route
-          path="/dashboard/category"
-          element={<List_Categories_Coffee />}
-        />
-        <Route
-          path="/dashboard/category/edit-category"
-          element={<Edit_catagory />}
-        />
+        <Route path="add-user" element={<AddUserForm />} />
+        <Route path="getusers" element={<GetUser />} />
+        <Route path="customers" element={<CustomerList />} />
+        <Route path="customers/:id" element={<UpdateCustomer />} />
+        <Route path="coffee-menu" element={<DesignListCoffee />} />
+        <Route path="categories" element={<List_Categories_Coffee />} />
+        <Route path="categories/add" element={<AddCategory />} />
+        <Route path="categories/edit/:id" element={<Edit_catagory />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="transaction" element={<Transaction />} />
+        <Route path="config_menu" element={<Config_Menu />} />
       </Route>
       <Route path="/delete" element={<Index />} />
     </Routes>
