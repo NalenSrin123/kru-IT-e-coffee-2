@@ -76,8 +76,8 @@ const App = () => {
         <Route path="orders" element={<OrdersPage />} />
         <Route path="transaction" element={<Transaction />} />
         <Route path="config_menu" element={<Config_Menu />} />
-        <Route path="/update-product/:id" element={<UpdateProduct />} />
       </Route>
+        <Route path="/update-product/:id" element={<UpdateProduct />} />
       <Route path="/delete" element={<Index />} />
     </Routes>
   );
