@@ -61,7 +61,7 @@ export default function CoffeeLogin() {
             </span>
           </p>
 
-          <form onSubmit={handleLogin} className="flex flex-col">
+          {/* <form onSubmit={handleLogin} className="flex flex-col"> */}
             {/* EMAIL */}
             <label className="text-sm mb-1 font-medium">E-mail</label>
             <input

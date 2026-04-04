@@ -12,6 +12,7 @@ import Home from "./components/public/home/Home_page";
 import MenuPage from "./components/public/menu/Menu_page";
 import ServicePage from "./components/public/service/Design_Service_Page";
 import About from "./components/public/about/About";
+import UpdateProduct from "./app/features/product/UpdateProduct";
 
 // Auth Pages
 import Login from "./context/auth/form_login";
@@ -54,12 +55,13 @@ const App = () => {
           <Route index element={<DesignPageUserList />} />
           <Route path="add-user" element={<AddUserForm />} />
         </Route>
-      </Route>
+      {/* </Route> */}
           <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
               <Route path="/dashboard" element={<CoffeeDashboardLayout/>}/>
               <Route path="/customerlist" element={<CustomerList/>}/>
+              <Route path="/update-product/:id" element={<UpdateProduct />} />
         </Route>
-      </Routes>
+      // </Routes>
    
      
   
