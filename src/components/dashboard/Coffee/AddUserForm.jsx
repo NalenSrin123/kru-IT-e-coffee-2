@@ -54,7 +54,7 @@ export default function AddUserForm() {
     try {
       setIsSubmitting(true);
 
-      await api.post("/register", {
+      await api.post("/staff", {
         name: form.username,
         email: form.email,
         password: form.password,
