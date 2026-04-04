@@ -4,12 +4,12 @@ import axios from "axios";
 const Index = () => {
   const [customers, setCustomers] = useState([]);
 
-  const API = "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api";
+  const API = "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/v1/customers";
 
   // fetch customers
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get(`${API}/customers`);
+      const res = await axios.get(API);
       setCustomers(res.data.data);
     } catch (error) {
       console.error(error);
@@ -22,8 +22,13 @@ const Index = () => {
 
   // delete function
   const deleteCustomer = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this customer?")) {
+      return;
+    }
+
     try {
-      await axios.delete(`${API}/customers/${id}`);
+      await axios.delete(`${API}/${id}`);
+      alert("Customer deleted successfully!");
       fetchCustomers(); // refresh list after delete
     } catch (error) {
       console.error(error);

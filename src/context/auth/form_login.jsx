@@ -9,38 +9,51 @@ export default function CoffeeLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+const handleLogin = async (e) => {
+  if (e) e.preventDefault();
+  setLoading(true); // Start loading
+  try {
+    const res = await axios.post(
+      "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/login",
+      { email, password },
+      { headers: { Accept: "application/json" } }
+    );
 
-    try {
-      const res = await axios.post(
-        "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/login",
-        { email, password },
-        { headers: { Accept: "application/json" } }
-      );
+    console.log("Login Response:", res.data);
 
-      console.log("Login Response:", res.data);
+    if (res.data.status === "success") {
+      const token = res.data.data.token;
+     
+      const role = res.data.data.user.role; 
 
-      if (res.data.status === "success") {
-        const token = res.data.data.token;
-        localStorage.setItem("token", token);
+    
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role); 
 
-        alert("Login successful!");
+      alert("Login success!");
+
+     
+      if (role === "admin") {
         navigate("/dashboard", { replace: true });
+      } else if (role === "customer") {
+        navigate("/", { replace: true });
       } else {
-        alert(res.data.message || "Login failed");
+     
+        navigate("/", { replace: true });
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert(
-        error.response?.data?.message || "Something went wrong during login!"
-      );
-    } finally {
-      setLoading(false);
+      
+    } else {
+      alert(res.data.message || "Login failed");
     }
-  };
-
+  } catch (error) {
+    console.error("Error logic:", error);
+  
+    const msg = error.response?.data?.message || "Something went wrong!";
+    alert(msg);
+  } finally {
+    setLoading(false); 
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center bg-amber-400/20 font-serif shadow-[0_20px_60px_rgba(120,70,20,0.25),0_4px_20px_rgba(120,70,20,0.1)] border border-amber-300/30">
       <div className="w-full max-w-3xl bg-transparent sm:rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
