@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicLayout from "./app/layouts/PublicLayout";
 import AuthLayout from "./app/layouts/AuthLayout";
 
-
-
 // Public Pages
 import Home from "./components/public/home/Home_page";
 import MenuPage from "./components/public/menu/Menu_page";
@@ -27,43 +25,56 @@ import ContactPage from "./components/public/contact/Contact_Page";
 import AddUserForm from "./components/dashboard/Coffee/AddUserForm";
 import DesignPageUserList from "./components/dashboard/Coffee/DesignPageUserList";
 import CustomerList from "./components/dashboard/customer";
+import GetUser from "./components/dashboard/Coffee/GetUser";
 import UpdateCustomer from "./components/dashboard/customer/UpdateCustomer";
+import List_Categories_Coffee from "./services/categories/List_Category-coffee.jsx";
+import Edit_catagory from "./dashboard/features/a1-core-crud-forms/coffee-category-crud/Edit_catagory.jsx";
+import AddCategory from "./components/dashboard/Category/AddCategory";
 
 
 const App = () => {
   return (
-    <Routes>   
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<MenuPage />} />
-          <Route path="/service" element={<ServicePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Route>
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/send-reset-password" element={<SendResetPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/send-reset-password-in-email" element={<ResetPasswordInEmail />} />
-          <Route path="/send_otp_code" element={<SendOtpCode />} />
-          <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/service" element={<ServicePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Route>
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/send-reset-password" element={<SendResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/send-reset-password-in-email"
+          element={<ResetPasswordInEmail />}
+        />
+        <Route path="/send_otp_code" element={<SendOtpCode />} />
+        <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
           <Route index element={<DesignPageUserList />} />
           <Route path="add-user" element={<AddUserForm />} />
         </Route>
       </Route>
-          <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
-     
-        <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
-               <Route index element={<h2>Dashboard Home</h2>} />
-               <Route path="users" element={<DesignPageUserList />} />
-        </Route>
-        <Route path="/delete" element={<Index />} /> 
-      </Routes>
-   
-     
-  
-   );
+      <Route path="/confirm_otp_code" element={<ConfirmOtpCode />} />
+
+      <Route path="/dashboard" element={<CoffeeDashboardLayout />}>
+        <Route index element={<h2>Dashboard Home</h2>} />
+        <Route path="users" element={<DesignPageUserList />} />
+          <Route path="getusers" element={<GetUser />} />
+        <Route
+          path="/dashboard/category"
+          element={<List_Categories_Coffee />}
+        />
+        <Route
+          path="/dashboard/category/edit-category"
+          element={<Edit_catagory />}
+        />
+      </Route>
+      <Route path="/delete" element={<Index />} />
+    </Routes>
+  );
 };
 
 export default App;
