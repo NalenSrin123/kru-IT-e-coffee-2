@@ -4,7 +4,7 @@ import axios from "axios";
 const Index = () => {
   const [customers, setCustomers] = useState([]);
 
-  const API = "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/v1/customers";
+  const API = "https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/v1/customers/{id}";
 
   // fetch customers
   const fetchCustomers = async () => {

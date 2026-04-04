@@ -81,6 +81,7 @@ function CustomerList() {
               </tr>
             </thead>
 
+
             <tbody>
               {filteredUsers.length > 0 ? (
                 filteredUsers.map((customer) => (
@@ -171,6 +172,7 @@ function CustomerList() {
                     {user.email}
                   </p>
                 </div>
+
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>

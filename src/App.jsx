@@ -37,6 +37,7 @@ import OrdersPage from "./dashboard/features/Orders_page";
 import Transaction from "./components/dashboard/Payment/Transaction";
 import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 import DesignListCoffee from "./dashboard/pages/coffee/design_list_coffee";
+import EditUserPage from "./components/dashboard/Coffee/EditUserPage";
 
 
 const App = () => {
@@ -66,7 +67,7 @@ const App = () => {
         <Route index element={<OverviewPage />} />
         <Route path="users" element={<DesignPageUserList />} />
         <Route path="add-user" element={<AddUserForm />} />
-        <Route path="getusers" element={<GetUser />} />
+        {/* <Route path="getusers" element={<GetUser />} /> */}
         <Route path="customers" element={<CustomerList />} />
         <Route path="customers/:id" element={<UpdateCustomer />} />
         <Route path="coffee-menu" element={<DesignListCoffee />} />
@@ -76,6 +77,9 @@ const App = () => {
         <Route path="orders" element={<OrdersPage />} />
         <Route path="transaction" element={<Transaction />} />
         <Route path="config_menu" element={<Config_Menu />} />
+        <Route path="edit-user/:id" element={< EditUserPage />} />
+        
+
       </Route>
         <Route path="/update-product/:id" element={<UpdateProduct />} />
       <Route path="/delete" element={<Index />} />

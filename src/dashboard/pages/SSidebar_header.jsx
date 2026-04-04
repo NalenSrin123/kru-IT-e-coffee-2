@@ -65,7 +65,7 @@ export default function CoffeeDashboardLayout() {
               <LayoutDashboard size={18} /> Dashboard
             </NavLink>
 
-            <NavLink to="/dashboard/getusers" className={linkClassName}>
+            <NavLink to="/dashboard/users" className={linkClassName}>
               <Users size={18} /> Users
             </NavLink>
 
