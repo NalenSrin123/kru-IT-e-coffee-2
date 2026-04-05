@@ -37,6 +37,7 @@ import OrdersPage from "./dashboard/features/Orders_page";
 import Transaction from "./components/dashboard/Payment/Transaction";
 import Config_Menu from "./components/dashboard/Setting/Config_Menu";
 import DesignListCoffee from "./dashboard/pages/coffee/design_list_coffee";
+import Crud_Logo from "./components/dashboard/Setting/Crud_Logo.jsx";
 
 
 const App = () => {
@@ -76,6 +77,7 @@ const App = () => {
         <Route path="orders" element={<OrdersPage />} />
         <Route path="transaction" element={<Transaction />} />
         <Route path="config_menu" element={<Config_Menu />} />
+        <Route path="crud_logo" element={<Crud_Logo />} />
       </Route>
         <Route path="/update-product/:id" element={<UpdateProduct />} />
       <Route path="/delete" element={<Index />} />

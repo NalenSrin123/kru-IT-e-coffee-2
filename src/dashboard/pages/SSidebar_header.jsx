@@ -159,6 +159,16 @@ export default function CoffeeDashboardLayout() {
                   >
                     Menu
                   </NavLink>
+                  <NavLink
+                    to="/dashboard/crud_logo"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
+                    Logo
+                  </NavLink>
                 </div>
               )}
             </div>
