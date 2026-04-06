@@ -64,7 +64,9 @@ const List_Categories_Coffee = () => {
         <h1 className="text-3xl font-bold text-[#4b2e2e]">
           All Coffee Categories
         </h1>
-        <button className="flex items-center gap-2 bg-[#6f4e37] hover:bg-[#5a3e2b] text-white px-5 py-2 rounded-lg font-semibold transition shadow-sm">
+        <button className="flex items-center gap-2 bg-[#6f4e37] hover:bg-[#5a3e2b] text-white px-5 py-2 rounded-lg font-semibold transition shadow-sm"
+          onClick={() => navigate("/dashboard/categories/add")}
+        >
           <Plus size={20} /> Add Category
         </button>
       </div>

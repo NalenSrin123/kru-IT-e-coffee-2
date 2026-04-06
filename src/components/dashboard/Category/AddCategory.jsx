@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   PlusCircle,
@@ -92,10 +93,13 @@ const AddCategory = () => {
   return (
     <div className="min-h-screen bg-gray-50/50 p-4 md:p-10 font-sans text-slate-900">
       <div className="max-w-4xl mx-auto">
-    
-        <button className="flex items-center text-gray-500 hover:text-[#a3531e] mb-6 transition-colors font-medium">
-          <ArrowLeft size={18} className="mr-2" /> Back to List
-        </button>
+        <Link
+          to="/dashboard/categories"
+          className="flex items-center text-gray-500 hover:text-[#a3531e] mb-6 transition-colors font-medium"
+        >
+          <ArrowLeft size={18} className="mr-2" />
+          Back to List
+        </Link>
 
         <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/60 overflow-hidden border border-gray-100">
           <div className="flex flex-col md:flex-row">
@@ -131,7 +135,6 @@ const AddCategory = () => {
             </div>
 
             <div className="flex-1 p-8 md:p-12">
-             
               {message.text && (
                 <div
                   className={`mb-6 p-4 rounded-xl flex items-center gap-3 text-sm ${message.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
@@ -146,7 +149,6 @@ const AddCategory = () => {
               )}
 
               {step === 1 ? (
-             
                 <form onSubmit={handleCreateCategory} className="space-y-6">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-800">
