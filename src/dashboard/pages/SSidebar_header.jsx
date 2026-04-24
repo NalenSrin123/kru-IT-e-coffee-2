@@ -35,6 +35,9 @@ export default function CoffeeDashboardLayout() {
     openMenu === "coffee" ||
     location.pathname === "/dashboard/coffee-menu" ||
     location.pathname.startsWith("/dashboard/categories");
+  const feedbackOpen =
+    openMenu === "feedback" ||
+    location.pathname.startsWith("/dashboard/feedback");
   const settingsOpen =
     openMenu === "settings" ||
     location.pathname.startsWith("/dashboard/config_menu");
@@ -126,6 +129,42 @@ export default function CoffeeDashboardLayout() {
             <NavLink to="/dashboard/transaction" className={linkClassName}>
               <Wallet size={18} /> Transaction
             </NavLink>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => toggleMenu("feedback")}
+                className={`flex w-full justify-between items-center rounded-lg p-2 transition ${
+                  feedbackOpen
+                    ? "bg-[#f3ebe6] text-[#905E42] font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <span className="flex items-center gap-3">
+                  <MessageCircle size={18} /> Feedback
+                </span>
+                {feedbackOpen ? (
+                  <ChevronUp size={16} />
+                ) : (
+                  <ChevronDown size={16} />
+                )}
+              </button>
+
+              {feedbackOpen && (
+                <div className="ml-8 mt-1 flex flex-col gap-1 text-sm">
+                  <NavLink
+                    to="/dashboard/feedback"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
+                    View Feedbacks
+                  </NavLink>
+                </div>
+              )}
+            </div>
 
             <div>
               <button

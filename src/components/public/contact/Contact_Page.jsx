@@ -1,9 +1,26 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, Send, Facebook, Twitter, Instagram, } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Facebook, Twitter, Instagram, CheckCircle, AlertCircle, X } from 'lucide-react';
 import { BsTelegram } from 'react-icons/bs';
 
 // Note: Ensure DM Sans is loaded in your project:
 // <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+const alertAnimationStyle = `
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-down {
+    animation: fadeInDown 0.4s ease-out;
+  }
+`;
 
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
@@ -11,22 +28,62 @@ export default function ContactPage() {
     email: '',
     subject: 'General Inquiry',
     message: '',
+    rating: 5,
   });
+
+  const [submitStatus, setSubmitStatus] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setLoading(true);
+    
+    try {
+      const response = await fetch('https://kru-it-e-coffee-intern-main-i74iel.laravel.cloud/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          message: formData.message,
+          rating: formData.rating,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: 'General Inquiry',
+          message: '',
+          rating: 5,
+        });
+        setTimeout(() => setSubmitStatus(''), 3000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus(''), 3000);
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(''), 3000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#EAD3A7] font-['DM_Sans',sans-serif]">
+      <style>{alertAnimationStyle}</style>
       {/* Hero Section with previous gradient style */}
-      <div className="relative mb-17 h-72 bg-gradient-to-r from-[#4f2d18] to-[#50330d] flex items-center overflow-hidden">
+      <div className="relative mb-17 h-72 bg-linear-to-r from-[#4f2d18] to-[#50330d] flex items-center overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[url('https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?cs=srgb&dl=pexels-apgpotr-683039.jpg&fm=jpg')] bg-cover bg-center bg-no-repeat"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
           <span className="text-amber-400 text-1xl md:text-2xl font-bold uppercase tracking-widest mb-2 block">Get in touch</span>
@@ -46,6 +103,50 @@ export default function ContactPage() {
             <p className="text-[#6B5344] mb-10 text-lg font-medium leading-relaxed">
               Whether you have a question about our roasts, want to partner with us, or just want to talk beans, our team is ready to help.
             </p>
+
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-6 bg-linear-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl shadow-lg animate-fade-in-down">
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 mt-0.5">
+                    <CheckCircle className="w-6 h-6 text-green-600 animate-bounce" strokeWidth={2.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-green-900 mb-1">Message Sent Successfully!</h3>
+                    <p className="text-green-700 text-sm font-medium">
+                      Thank you for your feedback. We'll review your message and get back to you soon.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitStatus('')}
+                    className="shrink-0 text-green-600 hover:text-green-800 transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-6 bg-linear-to-r from-red-50 to-rose-50 border border-red-200 rounded-2xl shadow-lg animate-fade-in-down">
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 mt-0.5">
+                    <AlertCircle className="w-6 h-6 text-red-600 animate-pulse" strokeWidth={2.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-red-900 mb-1">Something Went Wrong</h3>
+                    <p className="text-red-700 text-sm font-medium">
+                      We couldn't send your message. Please check your information and try again.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitStatus('')}
+                    className="shrink-0 text-red-600 hover:text-red-800 transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -77,24 +178,48 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="text-xs font-bold uppercase tracking-widest text-[#6B5344]">Subject</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-5 py-4 bg-stone-50 border-2 border-stone-100 rounded-2xl focus:outline-none focus:border-amber-500 transition-all font-medium text-gray-700"
-                >
-                  <option>General Inquiry</option>
-                  <option>Partnership</option>
-                  <option>Feedback</option>
-                  <option>Support</option>
-                </select>
+                        <div className="flex flex-col gap-2">
+                <label htmlFor="subject" className="text-xs font-bold uppercase tracking-widest text-[#6B5344]">
+                  Subject
+                </label>
+                <div className="relative group">
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 bg-stone-50 border-2 border-stone-100 rounded-2xl focus:outline-none focus:border-amber-500 transition-all font-medium text-gray-700 appearance-none cursor-pointer hover:border-stone-200"
+                  >
+                    <option value="" disabled hidden>Select a subject</option>
+                    <option>General Inquiry</option>
+                    <option>Partnership</option>
+                    <option>Feedback</option>
+                    <option>Support</option>
+                  </select>
+                  
+                  {/* Custom Arrow Icon */}
+                  <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none text-[#6B5344] group-focus-within:text-amber-500 transition-colors">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-[#6B5344]">Message</label>
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-[#6B5344]">
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -102,16 +227,56 @@ export default function ContactPage() {
                   onChange={handleChange}
                   placeholder="How can we help you today?"
                   rows={5}
-                  className="w-full px-5 py-4 bg-stone-50 border-2 border-stone-100 rounded-2xl focus:outline-none focus:border-amber-500 transition-all font-medium resize-none"
+                  className="w-full px-5 py-4 bg-stone-50 border-2 border-stone-100 rounded-2xl focus:outline-none focus:border-amber-500 transition-all font-medium resize-none text-gray-700 hover:border-stone-200"
                   required
                 ></textarea>
+              </div>
+                          <div className="flex flex-col gap-2">
+                <label htmlFor="rating" className="text-xs font-bold uppercase tracking-widest text-[#6B5344]">
+                  Rating
+                </label>
+                <div className="relative group">
+                  <select
+                    id="rating"
+                    name="rating"
+                    value={formData.rating}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 bg-stone-50 border-2 border-stone-100 rounded-2xl focus:outline-none focus:border-amber-500 transition-all font-medium text-gray-700 appearance-none cursor-pointer hover:border-stone-200"
+                  >
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="3">3 - Good</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="5">5 - Excellent</option>
+                  </select>
+                  
+                  {/* Custom Arrow Icon for Rating */}
+                  <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none text-[#6B5344] group-focus-within:text-amber-500 transition-colors">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#6B5344] hover:bg-[#4E3C31] text-white font-bold py-5 px-8 rounded-2xl transition-all flex items-center justify-center gap-3 group shadow-lg"
+                disabled={loading}
+                className="w-full bg-[#6B5344] hover:bg-[#4E3C31] disabled:bg-gray-400 text-white font-bold py-5 px-8 rounded-2xl transition-all flex items-center justify-center gap-3 group shadow-lg"
               >
-                <span size={20} className="group-hover:translate-x-1 group-hover:-translate-y-0.2 transition-transform">Send Message</span>
+                <span size={20} className="group-hover:translate-x-1 group-hover:-translate-y-0.2 transition-transform">
+                  {loading ? 'Sending...' : 'Send Message'}
+                </span>
                 
                 <Mail size={20} className="group-hover:translate-x-1 group-hover:-translate-y-0.2 transition-transform" />
               </button>
@@ -179,11 +344,18 @@ export default function ContactPage() {
 
                 {/* Social Icons */}
                 <div className="flex gap-3 mt-8">
-                  {[Facebook, Twitter, Instagram, Send].map((Icon, i) => (
-                    <button key={i} className="p-3 bg-white/5 hover:bg-amber-500 rounded-xl transition-all duration-300">
-                      <Icon size={18} className="text-white" />
-                    </button>
-                  ))}
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-amber-500 rounded-xl transition-all duration-300">
+                    <Facebook size={18} className="text-white" />
+                  </a>
+                  <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-amber-500 rounded-xl transition-all duration-300">
+                    <BsTelegram size={18} className="text-white" />
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-amber-500 rounded-xl transition-all duration-300">
+                    <Instagram size={18} className="text-white" />
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-amber-500 rounded-xl transition-all duration-300">
+                    <Twitter size={18} className="text-white" />
+                  </a>
                 </div>
               </div>
               {/* Decorative Circle */}
