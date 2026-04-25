@@ -38,6 +38,9 @@ export default function CoffeeDashboardLayout() {
   const settingsOpen =
     openMenu === "settings" ||
     location.pathname.startsWith("/dashboard/config_menu");
+  const SocialMediaOpen =
+    openMenu === "Social" ||
+    location.pathname === "/dashboard/Social";
 
   return (
     <div className="flex h-screen bg-[#f5f7fb]">
@@ -158,6 +161,16 @@ export default function CoffeeDashboardLayout() {
                     }
                   >
                     Menu
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/Social"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#905E42] font-medium"
+                        : "text-gray-500 hover:text-[#905E42]"
+                    }
+                  >
+                    Social Media
                   </NavLink>
                 </div>
               )}
